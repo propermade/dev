@@ -1,3 +1,4 @@
+import { Button, Card, Heading, Text } from "@propermade/core/base";
 import { Link } from "@tanstack/react-router";
 import { Section } from "../components/Blocks";
 import { ai } from "../content/ai";
@@ -13,17 +14,29 @@ function Sections({ page }: { page: PageContent }) {
 export function HomePage() {
   return (
     <>
-      <h1>{site.name}</h1>
-      <p className="title">{site.title}</p>
-      <p>{site.subtitle}</p>
-      <p>{site.lead}</p>
+      <section className="hero" aria-labelledby="hero-h">
+        <Text type="label" className="eyebrow">{site.title}</Text>
+        <Heading level={1} type="display-1" id="hero-h">{site.name}</Heading>
+        <p className="lead">{site.lead}</p>
+        <div className="cta">
+          <Button label="See selected work" variant="primary" href="#work" />
+          <Button label="Contact" variant="secondary" href="#contact" />
+        </div>
+        <p className="subtle">{site.subtitle}</p>
+      </section>
       <section aria-labelledby="work-h" id="work">
-        <h2 id="work-h">Selected work</h2>
+        <Heading level={2} id="work-h">Selected work</Heading>
         <p>Two projects of my own, separate from anything built at DriveWealth.</p>
-        <ul>
-          <li><Link to="/ui/">ui</Link>: the design system this site is built from.</li>
-          <li><Link to="/ai/">ai</Link>: the agent workflow that builds and reviews code to a standard.</li>
-        </ul>
+        <div className="cards">
+          <Card variant="default" className="work-card">
+            <Heading level={3}><Link to="/ui/">ui</Link></Heading>
+            <p>The design system this site is built from: one token source, accessible components, generated docs.</p>
+          </Card>
+          <Card variant="default" className="work-card">
+            <Heading level={3}><Link to="/ai/">ai</Link></Heading>
+            <p>The agent workflow that builds and reviews code to a standard, with verification gates at every step.</p>
+          </Card>
+        </div>
       </section>
       <Sections page={{ ...home, sections: home.sections.filter((s) => s.id !== "work") }} />
       <Contact />
