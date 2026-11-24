@@ -7,3 +7,7 @@ nav { display: flex; gap: 1rem; }
 .skip:focus { left: 1rem; top: 1rem; }
 :focus-visible { outline: 3px solid currentColor; outline-offset: 2px; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+.todo { border: 1px dashed currentColor; padding: 0.5rem 0.75rem; opacity: 0.8; }
+figure { margin: 1rem 0; }
+pre { overflow-x: auto; padding: 1rem; border: 1px solid currentColor; }
+img, video { max-width: 100%; height: auto; }

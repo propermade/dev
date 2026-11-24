@@ -6,13 +6,18 @@ import {
   Outlet,
   type RouterHistory,
 } from "@tanstack/react-router";
+import { site } from "./content/site";
+import { ai } from "./content/ai";
+import { home } from "./content/home";
+import { ui } from "./content/ui";
+import { AiPage, HomePage, UiPage } from "./routes/pages";
 import "./styles/site.css";
 
 const Root = () => (
   <>
     <a className="skip" href="#main">Skip to content</a>
     <header>
-      <Link to="/">Ryan Watkins-Hughes</Link>
+      <Link to="/">{site.name}</Link>
       <nav aria-label="Primary">
         <Link to="/ui/">ui</Link>
         <Link to="/ai/">ai</Link>
@@ -26,25 +31,15 @@ const Root = () => (
 
 const rootRoute = createRootRoute({ component: Root });
 
-const page = <P extends string>(path: P, title: string, body: string) =>
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path,
-    head: () => ({ meta: [{ title }] }),
-    component: () => (
-      <>
-        <h1>{title}</h1>
-        <p>{body}</p>
-      </>
-    ),
-  });
+const route = <P extends string>(path: P, title: string, component: () => React.JSX.Element) =>
+  createRoute({ getParentRoute: () => rootRoute, path, head: () => ({ meta: [{ title }] }), component });
 
 export const routePaths = ["/", "/ui/", "/ai/"] as const;
 
 const routeTree = rootRoute.addChildren([
-  page("/", "Design Systems & Frontend Platform Lead", "Placeholder: lead claim, selected work, about, contact."),
-  page("/ui/", "ui", "Placeholder: the design system."),
-  page("/ai/", "ai", "Placeholder: the agent workflow."),
+  route("/", home.title, HomePage),
+  route("/ui/", ui.title, UiPage),
+  route("/ai/", ai.title, AiPage),
 ]);
 
 export const createAppRouter = (history?: RouterHistory) =>

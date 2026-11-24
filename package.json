@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build --outDir dist/client && vite build --ssr src/entry-server.tsx --outDir dist/server && bun scripts/prerender.ts",
+    "build": "bun run check:content && tsc --noEmit && vite build --outDir dist/client && vite build --ssr src/entry-server.tsx --outDir dist/server && bun scripts/prerender.ts && bun scripts/check-content.ts dist/client",
     "preview": "vite preview --outDir dist/client",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:content": "bun scripts/check-content.ts src public"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.170.46",
