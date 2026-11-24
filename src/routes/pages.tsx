@@ -97,7 +97,10 @@ export function HomePage() {
       </section>
       <section className="band reveal" aria-labelledby="about-h" id="about">
         <SecHead n="02" id="about-h">About</SecHead>
-        <p className="todo">Draft: player-coach leadership first (hiring, mentoring, technical direction), hands-on depth second. One sentence on the art background (degrees only).</p>
+        {home.sections.find((s) => s.id === "about")?.blocks.map((b, i) =>
+          b.kind === "p" ? <p key={i} className={i === 0 ? "about-lead" : undefined}>{b.text}</p> : null,
+        )}
+        <p><a href={site.linkedin}>Connect on LinkedIn <span aria-hidden="true">↗</span></a></p>
       </section>
       <section className="band reveal" aria-labelledby="experience-h" id="experience">
         <SecHead n="03" id="experience-h">Experience</SecHead>
