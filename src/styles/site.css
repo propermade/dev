@@ -1,0 +1,9 @@
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+body { margin: 0; line-height: 1.6; }
+header, main { max-width: 64rem; margin-inline: auto; padding: 1rem; }
+header { display: flex; justify-content: space-between; }
+nav { display: flex; gap: 1rem; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; }
+:focus-visible { outline: 3px solid currentColor; outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
