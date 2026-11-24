@@ -52,7 +52,7 @@ a { color: var(--link); text-underline-offset: 0.2em; text-decoration-thickness:
 .hero h1 { margin: 1rem 0 0; font: 700 var(--step-hero) / 0.9 var(--font-display); letter-spacing: -0.04em; }
 .hero h1 { white-space: nowrap; }
 .hero h1 span { display: inline-block; }
-.lead { max-width: 38ch; margin: 2rem 0 0; font: 400 var(--step-1) / 1.4 var(--font-body); }
+.lead { max-width: 44ch; margin: 1.5rem 0 0; font: 400 var(--step-0) / 1.4 var(--font-body); }
 .hl { padding-bottom: 0.06em; background: linear-gradient(var(--signal), var(--signal)) 0 100% / 100% 0.16em no-repeat; }
 .cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; }
 .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.4rem; border-radius: 999px; font: 600 1rem var(--font-display); text-decoration: none; border: 2px solid var(--fg); color: var(--fg); background: transparent; }
@@ -77,7 +77,7 @@ main { outline: none; }
 .sec-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2rem; padding-top: 1.25rem; border-top: 2px solid var(--fg); }
 .sec-head h2 { margin: 0; font: 700 var(--step-2) / 1.05 var(--font-display); letter-spacing: -0.02em; }
 .sec-head .label { color: var(--fg); }
-.page h1 { font: 700 var(--step-hero) / 0.95 var(--font-display); letter-spacing: -0.04em; margin: 0 0 1rem; font-size: clamp(2.5rem, 1.2rem + 6vw, 6rem); }
+.page h1 { font: 700 var(--step-hero) / 0.95 var(--font-display); letter-spacing: -0.04em; margin: 0 0 1rem; font-size: clamp(1.75rem, 1rem + 3vw, 2.75rem); }
 .page h2 { font: 700 var(--step-2) / 1.1 var(--font-display); letter-spacing: -0.02em; }
 .page section { margin-block: 2.5rem; }
 .band p { max-width: 62ch; margin-block: 0 2rem; font: 400 var(--step-0) / 1.6 var(--font-body); }
@@ -143,3 +143,14 @@ figure { margin: 1rem 0; } pre { overflow-x: auto; padding: 1rem; border: 1px so
   .card .idx { -webkit-text-stroke: 0; color: CanvasText; }
   .tokens .chip { forced-color-adjust: none; }
 }
+
+/* ── /ui/ live demos ────────────────────────────────────────────────── */
+.demo { display: grid; gap: 1.25rem; margin: 1.5rem 0; padding: 1.5rem; border: 1px solid color-mix(in oklab, var(--fg) 25%, transparent); border-radius: 0.75rem; background: var(--raised); }
+.demo-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.demo-controls { display: grid; gap: 1rem; }
+.demo-controls label { display: grid; gap: 0.5rem; font: 500 var(--step-label) / 1.2 var(--font-mono); }
+.demo .demo-note { margin: 0; font-size: 0.9375rem; color: var(--muted); }
+.page section ul { list-style: disc; padding-left: 1.25rem; max-width: 62ch; font: 400 var(--step-0) / 1.6 var(--font-body); }
+.demo input:not([type="range"]) { border: 1px solid color-mix(in oklab, var(--fg) 45%, transparent); }
+.demo-controls label { display: block; }
+.demo-controls label input { display: block; width: 100%; margin-top: 0.5rem; }

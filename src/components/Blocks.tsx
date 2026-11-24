@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Block, Media, Section as SectionData } from "../content/types";
 
 export function MediaFigure({ media }: { media: Media }) {
@@ -49,13 +50,14 @@ function BlockView({ block }: { block: Block }) {
   }
 }
 
-export function Section({ section }: { section: SectionData }) {
+export function Section({ section, children }: { section: SectionData; children?: ReactNode }) {
   return (
     <section aria-labelledby={`${section.id}-h`} id={section.id}>
       <h2 id={`${section.id}-h`}>{section.heading}</h2>
       {section.blocks.map((b, i) => (
         <BlockView key={i} block={b} />
       ))}
+      {children}
     </section>
   );
 }

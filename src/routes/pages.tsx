@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { palette, ratio, type Token } from "../design/palette";
 import { Link } from "@tanstack/react-router";
 import { Section } from "../components/Blocks";
+import { LiveComponents, TokenEditor } from "../components/UiDemo";
 import { ai } from "../content/ai";
 import { home } from "../content/home";
 import { site } from "../content/site";
@@ -138,7 +139,11 @@ export const UiPage = () => (
   <div className="band page">
     <h1>{ui.title}</h1>
     <p>{ui.summary}</p>
-    <Sections page={ui} />
+    {ui.sections.map((s) => (
+      <Section key={s.id} section={s}>
+        {s.id === "tokens" ? <TokenEditor /> : s.id === "components" ? <LiveComponents /> : null}
+      </Section>
+    ))}
   </div>
 );
 
