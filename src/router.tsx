@@ -7,26 +7,27 @@ import {
   type RouterHistory,
 } from "@tanstack/react-router";
 import { site } from "./content/site";
-import { ai } from "./content/ai";
-import { home } from "./content/home";
-import { ui } from "./content/ui";
+import { pages } from "./seo";
 import { AiPage, HomePage, UiPage } from "./routes/pages";
+import { ModeToggle, ThemeShell } from "./components/ThemeShell";
+import "@propermade/core/index.css";
 import "./styles/site.css";
 
 const Root = () => (
-  <>
+  <ThemeShell>
     <a className="skip" href="#main">Skip to content</a>
     <header>
       <Link to="/">{site.name}</Link>
       <nav aria-label="Primary">
         <Link to="/ui/">ui</Link>
         <Link to="/ai/">ai</Link>
+        <ModeToggle />
       </nav>
     </header>
     <main id="main" tabIndex={-1}>
       <Outlet />
     </main>
-  </>
+  </ThemeShell>
 );
 
 const rootRoute = createRootRoute({ component: Root });
@@ -37,9 +38,9 @@ const route = <P extends string>(path: P, title: string, component: () => React.
 export const routePaths = ["/", "/ui/", "/ai/"] as const;
 
 const routeTree = rootRoute.addChildren([
-  route("/", home.title, HomePage),
-  route("/ui/", ui.title, UiPage),
-  route("/ai/", ai.title, AiPage),
+  route("/", pages[0]!.title, HomePage),
+  route("/ui/", pages[1]!.title, UiPage),
+  route("/ai/", pages[2]!.title, AiPage),
 ]);
 
 export const createAppRouter = (history?: RouterHistory) =>

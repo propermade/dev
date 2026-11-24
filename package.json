@@ -11,11 +11,15 @@
     "check:content": "bun scripts/check-content.ts src public"
   },
   "dependencies": {
+    "@astryxdesign/core": "^0.7.17",
+    "@propermade/core": "link:../ui/packages/core",
+    "@stylexjs/stylex": "^0.19.2",
     "@tanstack/react-router": "^1.170.46",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@stylexjs/unplugin": "^0.19.2",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
