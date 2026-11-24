@@ -27,11 +27,11 @@ export const home: PageContent = {
       id: "experience",
       heading: "Experience",
       blocks: [
-        { kind: "todo", note: "DriveWealth: title, dates, one-line description only. No metrics, screens, code or architecture." },
         {
           kind: "list",
           items: [
             "15+ years building frontend platforms and design systems.",
+            "DriveWealth: Principal Engineer & Frontend Platform Lead, February 2021 to present. Lead the frontend platform and design system for a fintech trading platform, and manage a distributed engineering team as player-coach.",
             "Global Holdings: led five engineers; billions in annual transactional volume; 35% faster release cycles.",
             "AcrobatAnt: 50% better on-time delivery.",
             "Anaconda: scaled frontend standards after a $24M Series A.",

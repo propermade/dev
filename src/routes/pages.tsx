@@ -104,9 +104,9 @@ export function HomePage() {
       </section>
       <section className="band reveal" aria-labelledby="experience-h" id="experience">
         <SecHead n="03" id="experience-h">Experience</SecHead>
-        <p className="todo">Draft: DriveWealth, title, dates and a one-line description only. No metrics, screens, code or architecture.</p>
         <dl className="rows">
           <div><dt>Overall</dt><dd>15+ years building frontend platforms and design systems.</dd></div>
+          <div><dt>DriveWealth</dt><dd>Principal Engineer &amp; Frontend Platform Lead, February 2021 to present. Lead the frontend platform and design system for a fintech trading platform, and manage a distributed engineering team as player-coach.</dd></div>
           <div><dt>Global Holdings</dt><dd>Led five engineers; billions in annual transactional volume; 35% faster release cycles.</dd></div>
           <div><dt>AcrobatAnt</dt><dd>50% better on-time delivery.</dd></div>
           <div><dt>Anaconda</dt><dd>Scaled frontend standards after a $24M Series A.</dd></div>
