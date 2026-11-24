@@ -1,5 +1,4 @@
-import { ThemeToggle } from "@propermade/core/components";
-import { ThemeProvider, type ThemeMode } from "@propermade/core/theme";
+import { ThemeProvider, ThemeToggle, type ThemeMode } from "@propermade/core/components";
 import { flushSync } from "react-dom";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
