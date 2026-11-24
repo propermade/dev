@@ -1,5 +1,5 @@
 import { useState, type CSSProperties } from "react";
-import { Banner, Button, Card, SegmentedControl, TextInput, Token } from "@propermade/core/base";
+import { Banner, Button, Card, SegmentedControl, TextInput, Token } from "@propermade/core/components";
 
 const accents = [
   { value: "#124df1", label: "Blue" },
