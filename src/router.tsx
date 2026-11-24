@@ -11,16 +11,20 @@ import { pages } from "./seo";
 import { AiPage, HomePage, UiPage } from "./routes/pages";
 import { ModeToggle, ThemeShell } from "./components/ThemeShell";
 import "@propermade/core/index.css";
+import "@fontsource/atkinson-hyperlegible-next/400.css";
+import "@fontsource/atkinson-hyperlegible-next/700.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
 import "./styles/site.css";
 
 const Root = () => (
   <ThemeShell>
     <a className="skip" href="#main">Skip to content</a>
-    <header>
+    <header className="site-header">
       <Link to="/">{site.name}</Link>
       <nav aria-label="Primary">
-        <Link to="/ui/">ui</Link>
-        <Link to="/ai/">ai</Link>
+        <Link to="/ui/" className="nav-link" activeProps={{ "aria-current": "page" }}>ui</Link>
+        <Link to="/ai/" className="nav-link" activeProps={{ "aria-current": "page" }}>ai</Link>
         <ModeToggle />
       </nav>
     </header>
@@ -44,7 +48,7 @@ const routeTree = rootRoute.addChildren([
 ]);
 
 export const createAppRouter = (history?: RouterHistory) =>
-  createRouter({ routeTree, history, defaultPreload: "intent", trailingSlash: "always" });
+  createRouter({ routeTree, history, defaultPreload: "intent", defaultViewTransition: true, trailingSlash: "always" });
 
 declare module "@tanstack/react-router" {
   interface Register {
