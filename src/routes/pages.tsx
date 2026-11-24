@@ -54,7 +54,7 @@ export function HomePage() {
           <div>
             <p className="label rise" style={{ "--i": 0 } as CSSProperties}>{site.title}</p>
             <h1 id="hero-h">
-              <span className="rise" style={{ "--i": 1 } as CSSProperties}>Ryan</span>
+              <span className="rise" style={{ "--i": 1 } as CSSProperties}>Ryan</span>{" "}
               <span className="rise" style={{ "--i": 2 } as CSSProperties}>Watkins-Hughes</span>
             </h1>
             <p className="lead rise" style={{ "--i": 3 } as CSSProperties}>
