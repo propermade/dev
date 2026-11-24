@@ -30,13 +30,13 @@ export const home: PageContent = {
         {
           kind: "list",
           items: [
-            "15+ years building frontend platforms and design systems.",
             "DriveWealth: Principal Engineer & Frontend Platform Lead, February 2021 to present. Lead the frontend platform and design system for a fintech trading platform, and manage a distributed engineering team as player-coach.",
             "Global Holdings: led five engineers; billions in annual transactional volume; 35% faster release cycles.",
             "AcrobatAnt: 50% better on-time delivery.",
             "Anaconda: scaled frontend standards after a $24M Series A.",
             "Razorfish: design system work for Fortune 20 accounts.",
             "Teach For America; teaching at Tulane.",
+            "15+ years building frontend platforms and design systems.",
           ],
         },
       ],

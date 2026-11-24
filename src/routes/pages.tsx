@@ -105,13 +105,13 @@ export function HomePage() {
       <section className="band reveal" aria-labelledby="experience-h" id="experience">
         <SecHead n="03" id="experience-h">Experience</SecHead>
         <dl className="rows">
-          <div><dt>Overall</dt><dd>15+ years building frontend platforms and design systems.</dd></div>
           <div><dt>DriveWealth</dt><dd>Principal Engineer &amp; Frontend Platform Lead, February 2021 to present. Lead the frontend platform and design system for a fintech trading platform, and manage a distributed engineering team as player-coach.</dd></div>
           <div><dt>Global Holdings</dt><dd>Led five engineers; billions in annual transactional volume; 35% faster release cycles.</dd></div>
           <div><dt>AcrobatAnt</dt><dd>50% better on-time delivery.</dd></div>
           <div><dt>Anaconda</dt><dd>Scaled frontend standards after a $24M Series A.</dd></div>
           <div><dt>Razorfish</dt><dd>Design system work for Fortune 20 accounts.</dd></div>
           <div><dt>Teaching</dt><dd>Teach For America; teaching at Tulane.</dd></div>
+          <div><dt>Overall</dt><dd>15+ years building frontend platforms and design systems.</dd></div>
         </dl>
       </section>
       <Contact />
