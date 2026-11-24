@@ -17,7 +17,7 @@ async function* walk(dir: string): AsyncGenerator<string> {
   for (const e of await readdir(dir, { withFileTypes: true })) {
     const p = join(dir, e.name);
     if (e.isDirectory()) yield* walk(p);
-    else if (/\.(ts|tsx|html|md|vtt|txt)$/.test(e.name)) yield p;
+    else if (/\.(ts|tsx|html|md|vtt|txt|xml|json)$/.test(e.name)) yield p;
   }
 }
 

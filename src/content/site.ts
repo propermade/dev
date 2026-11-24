@@ -2,6 +2,8 @@ export const site = {
   name: "Ryan Watkins-Hughes",
   title: "Design Systems & Frontend Platform Lead",
   subtitle: "Accessibility & UX · Agent Frameworks",
+  // Third-person summary for metadata, llms.txt and structured data (the lead claim is first person).
+  summary: "Ryan Watkins-Hughes is a Design Systems & Frontend Platform Lead who builds accessible design systems and frontend platforms for product teams, and agent workflows that build and review code to a standard.",
   lead: "I build the design systems and frontend platforms that product teams depend on, turning design rules into accessible code that enforces them. I came to engineering through art, with fine arts degrees from Pratt and Tulane.",
   linkedin: "https://www.linkedin.com/in/ryan-watkins-hughes",
   // TODO(brief 11): email text, calendar URL, public resume PDF. Left unset until confirmed.
