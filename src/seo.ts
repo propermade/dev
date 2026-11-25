@@ -1,9 +1,7 @@
 // Search and answer-engine metadata, generated from the content modules so it never drifts from the pages.
 // Pure data and strings: used by scripts/prerender.ts at build time, never shipped to the browser.
-import { ai } from "./content/ai";
 import { home } from "./content/home";
 import { site } from "./content/site";
-import { ui } from "./content/ui";
 
 export const siteUrl = "https://propermade.dev";
 
@@ -15,8 +13,7 @@ export const pages: PageMeta[] = [
     title: `${site.name}: ${home.title}`,
     description: site.summary,
   },
-  { path: "/ui/", title: `${ui.title} · ${site.name}`, description: ui.summary },
-  { path: "/ai/", title: `${ai.title} · ${site.name}`, description: ai.summary },
+  { path: "/work", title: `Selected Work · ${site.name}`, description: "Selected Work" },
 ];
 
 const url = (path: string) => `${siteUrl}${path}`;

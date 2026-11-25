@@ -1,7 +1,7 @@
 import type { PageContent } from "./types";
 
 export const ai: PageContent = {
-  title: "ai: an agent workflow with verification gates",
+  title: "agent workflows with verification gates",
   summary: "Personas, skills and a DAG engine from spec to shipped PR.",
   sections: [
     {
