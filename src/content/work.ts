@@ -18,7 +18,7 @@ export type Project = {
 };
 
 export const workIntro = {
-  title: "Platforms that make org standards the default",
+  title: "Platform standards that scale",
   summary: "Independent work on design systems and agent workflows that let an organization set a standard once and have tooling enforce it. Each has screenshots, a recording and the code that matters.",
 };
 
