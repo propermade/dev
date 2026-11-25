@@ -1,7 +1,14 @@
 export type Todo = { todo: string };
 export type Media =
   | { kind: "image"; src: string; alt: string; caption?: string }
-  | { kind: "video"; src: string; poster?: string; captions: string; transcript: string; caption?: string };
+  | {
+      kind: "video";
+      src: string;
+      poster?: string;
+      captions: string;
+      transcript: string;
+      caption?: string;
+    };
 export type Block =
   | { kind: "p"; text: string }
   | { kind: "list"; items: string[] }

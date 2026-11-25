@@ -8,8 +8,14 @@ export const ai: PageContent = {
       id: "what",
       heading: "What it is and why",
       blocks: [
-        { kind: "p", text: "An agent harness for a spec, build, review, ship and track workflow: personas, skills, plugins and a small DAG engine that runs a workflow as steps with checks between them." },
-        { kind: "p", text: "The point is that \"it's done\" is decided by scripts and people, not by the agent saying so. Each step either passes a check or hands back to the agent with the failure." },
+        {
+          kind: "p",
+          text: "An agent harness for a spec, build, review, ship and track workflow: personas, skills, plugins and a small DAG engine that runs a workflow as steps with checks between them.",
+        },
+        {
+          kind: "p",
+          text: 'The point is that "it\'s done" is decided by scripts and people, not by the agent saying so. Each step either passes a check or hands back to the agent with the failure.',
+        },
       ],
     },
     {
@@ -53,7 +59,10 @@ export const ai: PageContent = {
       id: "status",
       heading: "Honest status",
       blocks: [
-        { kind: "p", text: "Not all of it is live, and the project keeps a status table that says which parts are which." },
+        {
+          kind: "p",
+          text: "Not all of it is live, and the project keeps a status table that says which parts are which.",
+        },
         {
           kind: "list",
           items: [
@@ -65,6 +74,10 @@ export const ai: PageContent = {
         },
       ],
     },
-    { id: "run", heading: "A run, start to passing gates", blocks: [{ kind: "todo", note: "Screenshots and a captioned recording with transcript." }] },
+    {
+      id: "run",
+      heading: "A run, start to passing gates",
+      blocks: [{ kind: "todo", note: "Screenshots and a captioned recording with transcript." }],
+    },
   ],
 };

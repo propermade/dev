@@ -29,11 +29,16 @@ export const pairs: [Token, Token, number, (0 | 1)[]?][] = [
 const lin = (c: number) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
 const lum = (hex: string) => {
   const n = parseInt(hex.slice(1), 16);
-  return 0.2126 * lin((n >> 16) / 255) + 0.7152 * lin(((n >> 8) & 255) / 255) + 0.0722 * lin((n & 255) / 255);
+  return (
+    0.2126 * lin((n >> 16) / 255) +
+    0.7152 * lin(((n >> 8) & 255) / 255) +
+    0.0722 * lin((n & 255) / 255)
+  );
 };
 /** WCAG 2.x contrast ratio between two #rrggbb colours. */
 export function contrast(a: string, b: string): number {
   const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x) as [number, number];
   return (hi + 0.05) / (lo + 0.05);
 }
-export const ratio = (a: Token, b: Token, mode: 0 | 1) => contrast(palette[a][mode], palette[b][mode]);
+export const ratio = (a: Token, b: Token, mode: 0 | 1) =>
+  contrast(palette[a][mode], palette[b][mode]);

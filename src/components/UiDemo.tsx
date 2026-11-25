@@ -1,5 +1,12 @@
 import { useState, type CSSProperties } from "react";
-import { Banner, Button, Card, SegmentedControl, TextInput, Token } from "@propermade/core/components";
+import {
+  Banner,
+  Button,
+  Card,
+  SegmentedControl,
+  TextInput,
+  Token,
+} from "@propermade/core/components";
 
 const accents = [
   { value: "#124df1", label: "Blue" },
@@ -33,12 +40,19 @@ export function LiveComponents() {
         <p className="demo-note">Selected: {view}</p>
       </div>
       <div className="demo-row">
-        <TextInput label="Desk name" description="Mock field; nothing is sent anywhere." value={name} onChange={setName} />
+        <TextInput
+          label="Desk name"
+          description="Mock field; nothing is sent anywhere."
+          value={name}
+          onChange={setName}
+        />
       </div>
       <Card>
         <p className="demo-note">A core Card, rendered here with mock content.</p>
       </Card>
-      <Banner status="info" title="Mock data">Nothing on this page comes from a live system.</Banner>
+      <Banner status="info" title="Mock data">
+        Nothing on this page comes from a live system.
+      </Banner>
     </div>
   );
 }
@@ -53,7 +67,13 @@ export function TokenEditor() {
       <div className="demo-controls">
         <label>
           <code>--radius-element</code>: {radius}px
-          <input type="range" min={0} max={28} value={radius} onChange={(e) => setRadius(Number(e.target.value))} />
+          <input
+            type="range"
+            min={0}
+            max={28}
+            value={radius}
+            onChange={(e) => setRadius(Number(e.target.value))}
+          />
         </label>
         <SegmentedControl.Root value={accent} onChange={setAccent} label="--color-accent">
           {accents.map((a) => (

@@ -10,5 +10,8 @@ export default defineConfig({
   plugins: [stylex.vite({ useCSSLayers: true, dev: false, runtimeInjection: false }), react()],
   resolve: { dedupe: ["react", "react-dom"] },
   optimizeDeps: { exclude: stylexDeps },
-  ssr: { noExternal: [/^@propermade\//, /^@astryxdesign\//], optimizeDeps: { exclude: stylexDeps } },
+  ssr: {
+    noExternal: [/^@propermade\//, /^@astryxdesign\//],
+    optimizeDeps: { exclude: stylexDeps },
+  },
 });

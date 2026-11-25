@@ -8,7 +8,7 @@ export const site = {
   lead: "I lead frontend platform and design systems strategy: the architecture, standards and teams that let product organizations ship accessible interfaces consistently at scale. I came to engineering through art, with fine arts degrees from Pratt and Tulane.",
   linkedin: "https://www.linkedin.com/in/ryan-watkins-hughes",
   // TODO(brief 11): email text, calendar URL, public resume PDF. Left unset until confirmed.
-  email: "ryanwatkinshughes@gmail.com" as string | undefined,
+  email: "ryan@propermade.dev" as string | undefined,
   calendar: undefined as string | undefined,
   resumePdf: undefined as string | undefined,
   github: undefined as string | undefined, // only once ui and ai are public

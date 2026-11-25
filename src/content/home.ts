@@ -11,7 +11,10 @@ export const home: PageContent = {
       id: "work",
       heading: "Selected work",
       blocks: [
-        { kind: "p", text: "Independent work on design systems and agent workflows, where tooling enforces the standards." },
+        {
+          kind: "p",
+          text: "Independent work on design systems and agent workflows, where tooling enforces the standards.",
+        },
       ],
     },
     {
@@ -19,8 +22,14 @@ export const home: PageContent = {
       heading: "About",
       blocks: [
         { kind: "p", text: aboutLead },
-        { kind: "p", text: "Over 15 years I have moved from building interfaces to building the platforms and teams behind them: shared architecture, accessibility standards and review practices that many product teams can adopt without slowing down. I care most about standards that hold up across an organization, which means encoding them in tooling instead of relying on reminders." },
-        { kind: "p", text: "I came to engineering through art. I studied painting at Pratt, then taught myself to build, and the mix of craft and systems thinking still shapes my work. Design rules should be precise enough to enforce and clear enough that teams choose to follow them. In my first freelance design role I turned a gap in the company into its web development function, and I have been building capability, not just shipping features, ever since." },
+        {
+          kind: "p",
+          text: "Over 15 years I have moved from building interfaces to building the platforms and teams behind them: shared architecture, accessibility standards and review practices that many product teams can adopt without slowing down. I care most about standards that hold up across an organization, which means encoding them in tooling instead of relying on reminders.",
+        },
+        {
+          kind: "p",
+          text: "I came to engineering through art. I studied painting at Pratt, then taught myself to build, and the mix of craft and systems thinking still shapes my work. Design rules should be precise enough to enforce and clear enough that teams choose to follow them. In my first freelance design role I turned a gap in the company into its web development function, and I have been building capability, not just shipping features, ever since.",
+        },
       ],
     },
     {

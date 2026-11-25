@@ -5,16 +5,16 @@ by `scripts/prerender.ts`, so metadata cannot drift from the pages.
 
 ## What ships
 
-| Item | Where | Why |
-| --- | --- | --- |
-| Prerendered HTML per route | `dist/client/**/index.html` | Answer engines and crawlers read the HTML. Content that needs JavaScript to appear is often missed. |
-| Unique `<title>` and meta description | `headFor()` | Quoted and summarised by search and answer engines. |
-| Canonical URL | `headFor()` | One URL per page, trailing slash. |
-| Open Graph and Twitter tags | `headFor()` | Link previews. |
-| JSON-LD (`Person`, `WebSite`, `ProfilePage`, `WebPage`, `BreadcrumbList`) | `jsonLd()` | Gives machines the entity: who, what role, where else they appear (`sameAs`). Public facts only. |
-| `sitemap.xml` | build output | Discovery. |
-| `robots.txt` with named AI crawlers | `crawlers` in `src/seo.ts` | Explicit per-bot policy, split into retrieval and training. |
-| `llms.txt` | build output | A plain-text map of the site for LLM tools. |
+| Item                                                                      | Where                       | Why                                                                                                 |
+| ------------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------- |
+| Prerendered HTML per route                                                | `dist/client/**/index.html` | Answer engines and crawlers read the HTML. Content that needs JavaScript to appear is often missed. |
+| Unique `<title>` and meta description                                     | `headFor()`                 | Quoted and summarised by search and answer engines.                                                 |
+| Canonical URL                                                             | `headFor()`                 | One URL per page, trailing slash.                                                                   |
+| Open Graph and Twitter tags                                               | `headFor()`                 | Link previews.                                                                                      |
+| JSON-LD (`Person`, `WebSite`, `ProfilePage`, `WebPage`, `BreadcrumbList`) | `jsonLd()`                  | Gives machines the entity: who, what role, where else they appear (`sameAs`). Public facts only.    |
+| `sitemap.xml`                                                             | build output                | Discovery.                                                                                          |
+| `robots.txt` with named AI crawlers                                       | `crawlers` in `src/seo.ts`  | Explicit per-bot policy, split into retrieval and training.                                         |
+| `llms.txt`                                                                | build output                | A plain-text map of the site for LLM tools.                                                         |
 
 ## Judgement calls for the owner
 

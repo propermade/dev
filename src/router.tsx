@@ -8,8 +8,8 @@ import {
 } from "@tanstack/react-router";
 import { site } from "./content/site";
 import { pages } from "./seo";
-import { Home,  } from "./routes";
-import { Work } from "./routes/work"
+import { Home } from "./routes";
+import { Work } from "./routes/work";
 import { ModeToggle, ThemeShell } from "./components/ThemeShell";
 import "@propermade/core/index.css";
 import "@fontsource/geist-sans/400.css";
