@@ -66,15 +66,15 @@ export function Home() {
               {site.title}
             </p>
             <p className="lead rise" style={{ "--i": 3 } as CSSProperties}>
-              I build{" "}
+              I lead{" "}
               <span className="hl" style={{ "--i": 0 } as CSSProperties}>
-                frontend platforms
+                frontend platform
               </span>{" "}
               and{" "}
               <span className="hl" style={{ "--i": 0 } as CSSProperties}>
                 design systems
               </span>{" "}
-              for products at scale, turning design rules into accessible code that enforces them .
+              strategy: the architecture, standards and teams that let product organizations ship accessible interfaces consistently at scale.
               I came to engineering through art, with fine arts degrees from Pratt and Tulane.
             </p>
             <div className="cta rise" style={{ "--i": 4 } as CSSProperties}>
