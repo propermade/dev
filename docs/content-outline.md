@@ -9,11 +9,11 @@ no art work on the site, no phone number, WCAG 2.2 AA floor, reduced-motion resp
 
 ## Site map
 
-| Route | Purpose |
-| --- | --- |
-| `/` | Long home page: lead claim, selected work, about, experience, contact. |
-| `/ui/` | Depth page for the design system. |
-| `/ai/` | Depth page for the agent workflow. |
+| Route  | Purpose                                                                |
+| ------ | ---------------------------------------------------------------------- |
+| `/`    | Long home page: lead claim, selected work, about, experience, contact. |
+| `/ui/` | Depth page for the design system.                                      |
+| `/ai/` | Depth page for the agent workflow.                                     |
 
 A résumé page is deferred; the public PDF covers it.
 
@@ -22,9 +22,7 @@ A résumé page is deferred; the public PDF covers it.
 1. **Hero**
    - Name: Ryan Watkins-Hughes. Title: Design Systems & Frontend Platform Lead. [brief]
    - Optional second line: "Accessibility & UX · Agent Frameworks". [brief]
-   - Lead claim: "I build the design systems and frontend platforms that product teams depend on, turning design
-     rules into accessible code that enforces them. I came to engineering through art, with fine arts degrees
-     from Pratt and Tulane." [brief]
+   - Lead claim: "I build frontend platforms and design systems for products at scale, turning design rules into accessible code that enforces them. I came to engineering through art, with fine arts degrees from Pratt and Tulane." [brief]
    - Links: Selected work, Contact.
 2. **Selected work** (two cards, each one sentence plus a link to its page)
    - `ui`: the design system this site is built from. [repo]
@@ -87,13 +85,13 @@ one example, with its mock data stated plainly, and do not lead with it. [brief 
 
 ## Media to capture
 
-| Item | Page | Notes |
-| --- | --- | --- |
-| Generated docs screenshots | `/ui/` | From `docs:dev` or Storybook. Alt text on each. |
-| Keyboard and state recording | `/ui/` | Short, captioned, transcript beside it. |
-| Agent run screenshots | `/ai/` | Terminal output with no private data. |
-| Agent run recording | `/ai/` | Start to passing gates, captioned, transcript. |
-| DriveWealth material | n/a | Only if you confirm it is already public. Otherwise none. |
+| Item                         | Page   | Notes                                                     |
+| ---------------------------- | ------ | --------------------------------------------------------- |
+| Generated docs screenshots   | `/ui/` | From `docs:dev` or Storybook. Alt text on each.           |
+| Keyboard and state recording | `/ui/` | Short, captioned, transcript beside it.                   |
+| Agent run screenshots        | `/ai/` | Terminal output with no private data.                     |
+| Agent run recording          | `/ai/` | Start to passing gates, captioned, transcript.            |
+| DriveWealth material         | n/a    | Only if you confirm it is already public. Otherwise none. |
 
 ## Open questions
 

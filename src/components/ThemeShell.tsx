@@ -1,4 +1,6 @@
 import { ThemeProvider, ThemeToggle, type ThemeMode } from "@propermade/core/components";
+import { siteTheme } from "../theme/site.js";
+import "../theme/site.css";
 import { flushSync } from "react-dom";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
@@ -8,7 +10,7 @@ const Ctx = createContext<{ mode: ThemeMode; setMode: (m: ThemeMode) => void }>(
   setMode: () => {},
 });
 
-/** Holds the colour mode. Starts on "system" so server and client markup match, then restores a saved choice. */
+/** Holds the color mode. Starts on "system" so server and client markup match, then restores a saved choice. */
 export function ThemeShell({ children }: { children: ReactNode }) {
   const [mode, setModeState] = useState<ThemeMode>("system");
   useEffect(() => {
@@ -17,11 +19,6 @@ export function ThemeShell({ children }: { children: ReactNode }) {
       if (saved === "light" || saved === "dark" || saved === "system") setModeState(saved);
     } catch {}
   }, []);
-  // The site's own palette follows the same mode through a data attribute on <html>.
-  useEffect(() => {
-    if (mode === "system") document.documentElement.removeAttribute("data-mode");
-    else document.documentElement.dataset.mode = mode;
-  }, [mode]);
   const setMode = (m: ThemeMode) => {
     const apply = () => {
       setModeState(m);
@@ -29,14 +26,14 @@ export function ThemeShell({ children }: { children: ReactNode }) {
         localStorage.setItem(key, m);
       } catch {}
     };
-    // Cross-fade the colour change where supported, unless the visitor prefers reduced motion.
+    // Cross-fade the color change where supported, unless the visitor prefers reduced motion.
     if (document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.startViewTransition(() => flushSync(apply));
     } else apply();
   };
   return (
     <Ctx value={{ mode, setMode }}>
-      <ThemeProvider mode={mode}>{children}</ThemeProvider>
+      <ThemeProvider theme={siteTheme} mode={mode}>{children}</ThemeProvider>
     </Ctx>
   );
 }

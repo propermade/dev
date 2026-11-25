@@ -1,7 +1,7 @@
 import type { PageContent } from "./types";
 
 export const ui: PageContent = {
-  title: "ui: a design system that enforces its own rules",
+  title: "design systems that enforces their own rules",
   summary: "One token source feeding code, Storybook and Claude Design.",
   sections: [
     {
@@ -16,7 +16,7 @@ export const ui: PageContent = {
       id: "tokens",
       heading: "Tokens",
       blocks: [
-        { kind: "p", text: "Every colour, space and radius lives in one W3C Design Tokens file. Each token names its CSS variable, and a token that differs in dark mode lists both values. Light and dark CSS, the theme and the reference docs are generated from it, never edited by hand." },
+        { kind: "p", text: "Every color, space and radius lives in one W3C Design Tokens file. Each token names its CSS variable, and a token that differs in dark mode lists both values. Light and dark CSS, the theme and the reference docs are generated from it, never edited by hand." },
         { kind: "code", lang: "json", title: "A token, as defined", code: `"element": {
   "$type": "dimension",
   "$value": "8px",

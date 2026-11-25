@@ -1,11 +1,11 @@
 # Design direction: ink, paper, signal
 
-Extends the core theme (`@propermade/core`) with the site's own colour, type and motion. Core supplies the
+Extends the core theme (`@propermade/core`) with the site's own color, type and motion. Core supplies the
 theme provider, mode toggle and Space Grotesk; everything else here is custom CSS in `src/styles/site.css`.
 
-## Colour
+## color
 
-Source of truth: `src/design/palette.ts`. `scripts/gen-palette.ts` writes the CSS custom properties and **fails the
+Source of truth: `src/theme/theme.ts`. `scripts/build-theme.ts` (`bun run theme`) writes the CSS custom properties and **fails the
 build** when a pair drops below its contrast floor, so the palette enforces its own rules.
 
 | Token | Light | Dark | Use |
@@ -17,7 +17,7 @@ build** when a pair drops below its contrast floor, so the palette enforces its 
 | `link` | `#0f3fd0` | `#9db4ff` | Links, 7.1:1 on paper. |
 | `signal` | `#f5b92b` | `#f5b92b` | Brand yellow. Fill with ink text (8.7:1). As a bare shape only in dark mode (light is 1.6:1). |
 
-Yellow is core's brand colour (`--color-brand`). Blue `#3b63ff` appears only as a card stripe and glow, never for text.
+Yellow is core's brand color (`--color-brand`). Blue `#3b63ff` appears only as a card stripe and glow, never for text.
 
 ## Type
 
@@ -31,7 +31,7 @@ Yellow is core's brand colour (`--color-brand`). Blue `#3b63ff` appears only as 
 
 Rules, from the modern-web guidance: motion is opt-in under `prefers-reduced-motion: no-preference`; every state is
 visible and complete without it; only `opacity`, `translate` and `transform` move; nothing loops or flashes;
-colour transitions stay on for everyone.
+color transitions stay on for everyone.
 
 | # | Effect | Status |
 | --- | --- | --- |
@@ -52,7 +52,7 @@ control (WCAG 2.2.2).
 
 ## Accessibility notes
 
-- Focus ring is 3px, `link` colour on paper and `signal` on ink.
+- Focus ring is 3px, `link` color on paper and `signal` on ink.
 - `prefers-contrast: more` strengthens borders and muted text; `forced-colors` has explicit fallbacks.
 - Highlighter is a background band under the text, not behind it, so it never lowers text contrast.
-- Still to do: screen reader pass, contrast of the card stripe and glow in forced colours, keyboard-test the toggle.
+- Still to do: screen reader pass, contrast of the card stripe and glow in forced colors, keyboard-test the toggle.
