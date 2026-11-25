@@ -1,7 +1,7 @@
 import type { PageContent } from "./types";
 
 export const aboutLead =
-  "I'm a product engineering lead and UI architect who thinks like a designer and ships like an engineer. My focus is design systems, agent orchestration frameworks, and real-time, low-latency platforms for high-volume streaming data.";
+  "I'm an engineering leader and UI architect who works where design, engineering and organizational standards meet. My focus is design systems, agent orchestration frameworks, and real-time platforms for high-volume streaming data.";
 
 export const home: PageContent = {
   title: "Design Systems & Frontend Platform Lead",
@@ -11,7 +11,7 @@ export const home: PageContent = {
       id: "work",
       heading: "Selected work",
       blocks: [
-        { kind: "p", text: "Two projects of my own, separate from anything built at DriveWealth." },
+        { kind: "p", text: "Independent work on design systems and agent workflows, where tooling enforces the standards." },
       ],
     },
     {
@@ -19,8 +19,8 @@ export const home: PageContent = {
       heading: "About",
       blocks: [
         { kind: "p", text: aboutLead },
-        { kind: "p", text: "I studied painting at Pratt, but I was more builder and experimenter than painter. A more traditional program might have asked me to leave. Instead I taught myself to spec, source and assemble a desktop from scratch, and started making interactive Flash artworks and abstract websites." },
-        { kind: "p", text: "Pratt gave me the confidence that I could solve interactive, technical problems creatively. In my first freelance design role, the company wasn't ready for the boom in web business and kept losing pitches to larger interactive agencies. I volunteered to figure it out and became its de facto web development department, a one-person freelance team." },
+        { kind: "p", text: "Over 15 years I have moved from building interfaces to building the platforms and teams behind them: shared architecture, accessibility standards and review practices that many product teams can adopt without slowing down. I care most about standards that hold up across an organization, which means encoding them in tooling instead of relying on reminders." },
+        { kind: "p", text: "I came to engineering through art. I studied painting at Pratt, then taught myself to build, and the mix of craft and systems thinking still shapes my work. Design rules should be precise enough to enforce and clear enough that teams choose to follow them. In my first freelance design role I turned a gap in the company into its web development function, and I have been building capability, not just shipping features, ever since." },
       ],
     },
     {
