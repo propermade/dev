@@ -18,7 +18,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
         env:
-          GITHUB_PACKAGES: ${{ secrets.GITHUB_PACKAGES_TOKEN }}
+          PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
       - run: bun run build
       - run: cp dist/client/index.html dist/client/404.html
       - uses: actions/upload-pages-artifact@v3
