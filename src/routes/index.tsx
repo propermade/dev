@@ -1,14 +1,9 @@
-import {
-  Link,
-} from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 import { palette, ratio, type Token } from "../theme/theme";
-import { Section } from "../components/Blocks";
-import { LiveComponents, TokenEditor } from "../components/UiDemo";
 import { home } from "../content/home";
 import { site } from "../content/site";
-import { InboxIcon } from '@heroicons/react/16/solid'
-
+import { InboxIcon } from "@heroicons/react/16/solid";
 
 const swatches = [
   { name: "Ink", token: "bg" as Token, mode: 1 as const, ratio: ratio("fg", "bg", 1) },
@@ -50,7 +45,9 @@ function Tokens() {
 function SecHead({ n, id, children }: { n: string; id: string; children: string }) {
   return (
     <div className="sec-head">
-      <span className="label hl" style={{ "--i": 1 } as CSSProperties}>{n}</span>
+      <span className="label hl" style={{ "--i": 1 } as CSSProperties}>
+        {n}
+      </span>
       <h2 id={id}>{children}</h2>
     </div>
   );
@@ -74,8 +71,9 @@ export function Home() {
               <span className="hl" style={{ "--i": 0 } as CSSProperties}>
                 design systems
               </span>{" "}
-              strategy: the architecture, standards and teams that let product organizations ship accessible interfaces consistently at scale.
-              I came to engineering through art, with fine arts degrees from Pratt and Tulane.
+              strategy: the architecture, standards and teams that let product organizations ship
+              accessible interfaces consistently at scale. I came to engineering through art, with
+              fine arts degrees from Pratt and Tulane.
             </p>
             <div className="cta rise" style={{ "--i": 4 } as CSSProperties}>
               <Link to="/work/" className="btn primary">
@@ -83,7 +81,7 @@ export function Home() {
                 <span className="arrow" aria-hidden="true">
                   →
                 </span>
-                </Link>
+              </Link>
               <a className="btn" href="#contact">
                 Contact
               </a>
@@ -119,42 +117,53 @@ export function Home() {
           <div>
             <dt>DriveWealth</dt>
             <dd>
-              <span className="position">Principal Engineer & Frontend Platform Lead</span> · February 2021 – Present<br />
-              Lead frontend architecture and the enterprise design system for a fintech trading platform, and manage and mentor a distributed engineering team as player-coach.
+              <span className="position">Principal Engineer & Frontend Platform Lead</span> ·
+              February 2021 – Present
+              <br />
+              Lead frontend architecture and the enterprise design system for a fintech trading
+              platform, and manage and mentor a distributed engineering team as player-coach.
             </dd>
           </div>
           <div>
             <dt>Global Holdings</dt>
             <dd>
-              <span className="position">Lead Frontend Engineer</span> · 2019 – 2021<br />
-              Led a team of five engineers on web platforms processing billions in annual transactional volume, and cut release cycle turnaround by 35%.
+              <span className="position">Lead Frontend Engineer</span> · 2019 – 2021
+              <br />
+              Led a team of five engineers on web platforms processing billions in annual
+              transactional volume, and cut release cycle turnaround by 35%.
             </dd>
           </div>
           <div>
             <dt>AcrobatAnt</dt>
             <dd>
-              <span className="position">Interactive Director</span> · 2017 – 2019<br />
-              Managed designers and engineers delivering zero-to-one web products, and improved on-time milestone delivery by 50%.
+              <span className="position">Interactive Director</span> · 2017 – 2019
+              <br />
+              Managed designers and engineers delivering zero-to-one web products, and improved
+              on-time milestone delivery by 50%.
             </dd>
           </div>
           <div>
             <dt>Anaconda</dt>
             <dd>
-              <span className="position">User Interface Architect</span> · 2016 – 2017<br />
-              Led UI platform architecture and a cross-functional engineering and design team, and scaled frontend standards after a $24M Series A.
+              <span className="position">User Interface Architect</span> · 2016 – 2017
+              <br />
+              Led UI platform architecture and a cross-functional engineering and design team, and
+              scaled frontend standards after a $24M Series A.
             </dd>
           </div>
           <div>
             <dt>Razorfish</dt>
             <dd>
               <span className="position">Senior UX Engineer</span> · 2013 – 2016 <br />
-              Built WCAG-accessible web applications and design system architectures for Fortune 20 accounts.
+              Built WCAG-accessible web applications and design system architectures for Fortune 20
+              accounts.
             </dd>
           </div>
           <div>
             <dt>Earlier Experience</dt>
             <dd>
-              <span className="position">Web Engineering Manager</span> · Teach For America<br />
+              <span className="position">Web Engineering Manager</span> · Teach For America
+              <br />
               <span className="position">Adjunct Assistant Professor</span> · Tulane University
             </dd>
           </div>
@@ -168,15 +177,15 @@ export function Home() {
 function Contact() {
   return (
     <section className="band reveal" aria-labelledby="contact-h" id="contact">
-        <SecHead n="03" id="contact-h">
-          Contact
-        </SecHead>
+      <SecHead n="03" id="contact-h">
+        Contact
+      </SecHead>
       <ul className="contact-links">
         {site.email ? (
           <li>
             <a href={`mailto:${site.email}`}>
               {site.email}
-              <InboxIcon className="email"/>
+              <InboxIcon className="email" />
             </a>
           </li>
         ) : null}
@@ -204,4 +213,3 @@ function Contact() {
     </section>
   );
 }
-

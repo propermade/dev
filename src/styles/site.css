@@ -18,6 +18,9 @@
   --step-label: 0.8125rem;
   --gutter: max(1.25rem, calc((100vw - 72rem) / 2));
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* White on a deeper signal green for filled buttons: 5.2:1. White on the plain signal (#468e5c) is only 4.0:1. */
+  --signal-fill: #3a7a4f;
+  --on-signal: #ffffff;
 }
 
 * {
@@ -194,9 +197,9 @@ a {
   background: transparent;
 }
 .btn.primary {
-  background: var(--signal);
-  border-color: var(--signal);
-  color: var(--bg);
+  background: var(--signal-fill);
+  border-color: var(--signal-fill);
+  color: var(--on-signal);
 }
 .btn .arrow {
   display: inline-block;
@@ -206,8 +209,8 @@ a {
   color: var(--bg);
 }
 .btn.primary:hover {
-  background: color-mix(in oklab, var(--signal) 80%, white);
-  color: var(--bg);
+  background: color-mix(in oklab, var(--signal-fill) 82%, black);
+  color: var(--on-signal);
   border-color: transparent;
 }
 .sub {
@@ -297,7 +300,6 @@ main {
   font: 400 var(--step-0) / 1.6 var(--font-body);
 }
 .band .position {
-
   font-weight: 600;
 }
 
@@ -410,7 +412,7 @@ main {
 
 .contact-links .email {
   width: var(--text-body-size);
-  height: var(--text-body-size)
+  height: var(--text-body-size);
 }
 
 .contact-links a:hover {
@@ -630,9 +632,9 @@ video {
   cursor: pointer;
 }
 .filters .btn[aria-pressed="true"] {
-  background: var(--signal);
-  border-color: var(--signal);
-  color: var(--bg);
+  background: var(--signal-fill);
+  border-color: var(--signal-fill);
+  color: var(--on-signal);
 }
 .cards {
   list-style: none;
@@ -666,6 +668,31 @@ video {
   .cols {
     grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
   }
+}
+.cols.solo {
+  grid-template-columns: minmax(0, 1fr);
+}
+.cols.solo .info > p {
+  max-width: none;
+}
+@media (min-width: 62rem) {
+  /* No media column: text fills the width, the facts sit beside it. */
+  .cols.solo .info {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+    grid-template-areas:
+      "sum rows"
+      "body rows"
+      "tags rows"
+      "links rows";
+    gap: 0 3rem;
+    align-items: start;
+  }
+  .cols.solo .info > .sum { grid-area: sum; }
+  .cols.solo .info > p:not(.sum) { grid-area: body; }
+  .cols.solo .info > .tags { grid-area: tags; }
+  .cols.solo .info > .rows { grid-area: rows; margin: 0; }
+  .cols.solo .info > .links { grid-area: links; }
 }
 .info > p {
   margin: 0 0 1.25rem;
@@ -823,6 +850,31 @@ video {
 .thumb[aria-current="true"] {
   border: 2px solid var(--signal);
 }
+.enlarge {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.enlarge img,
+.enlarged {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.thumb.has-img {
+  overflow: hidden;
+  background: var(--raised);
+}
+.thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
 .media details {
   margin-top: 0.75rem;
   border: 1px solid color-mix(in oklab, var(--fg) 25%, transparent);
@@ -840,25 +892,39 @@ video {
 }
 
 .codebox {
-  border: 1px solid color-mix(in oklab, var(--fg) 30%, transparent);
+  /* Code is always dark, in both site themes. Every token colour is 7:1 or better on --code-bg. */
+  --code-bg: #12171f;
+  --code-fg: #dde4ee;
+  --code-muted: #9aa7b8;
+  --code-line: #2b3441;
+  border: 1px solid var(--code-line);
   border-radius: 4px;
-  background: var(--raised);
+  background: var(--code-bg);
+  color: var(--code-fg);
   min-width: 0;
   overflow: clip;
 }
 .codebar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid color-mix(in oklab, var(--fg) 25%, transparent);
+  border-bottom: 1px solid var(--code-line);
 }
 .files {
   display: flex;
   gap: 1.25rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  min-width: 0;
+  overflow-x: auto;
+}
+.file {
+  white-space: nowrap;
+}
+.copy {
+  flex: none;
 }
 .file {
   background: none;
@@ -866,10 +932,10 @@ video {
   padding: 0.2rem 0;
   cursor: pointer;
   font: 500 var(--step-label) var(--font-mono);
-  color: var(--muted);
+  color: var(--code-muted);
 }
-.file[aria-pressed="true"] {
-  color: var(--fg);
+.codebox .file[aria-pressed="true"] {
+  color: var(--code-fg);
   box-shadow: 0 2px var(--signal);
 }
 .copy {
@@ -887,9 +953,19 @@ video {
   background: var(--fg);
   color: var(--bg);
 }
+.codebox .copy {
+  color: var(--code-fg);
+  border-color: var(--code-muted);
+}
+.codebox .copy:hover {
+  background: var(--code-fg);
+  color: var(--code-bg);
+}
 .codebox pre {
   margin: 0;
   border: 0;
+  color: inherit;
+  background: transparent;
   font: 400 0.8125rem / 1.65 var(--font-mono);
   tab-size: 2;
 }
@@ -909,5 +985,37 @@ video {
   .codebox,
   .thumb {
     border: 2px solid CanvasText;
+  }
+}
+
+.tk-c {
+  color: #9aa7b8;
+  font-style: italic;
+}
+.tk-s {
+  color: #9be0ae;
+}
+.tk-k {
+  color: #ff9f80;
+}
+.tk-n {
+  color: #f5c97f;
+}
+.tk-p {
+  color: #8fc7ff;
+}
+.tk-f {
+  color: #d3b4ff;
+}
+.tk-t {
+  color: #7fd8e6;
+}
+.tk-v {
+  color: #f5c97f;
+}
+@media (forced-colors: active) {
+  [class^="tk-"] {
+    color: CanvasText;
+    font-style: normal;
   }
 }

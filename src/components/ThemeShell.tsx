@@ -33,7 +33,9 @@ export function ThemeShell({ children }: { children: ReactNode }) {
   };
   return (
     <Ctx value={{ mode, setMode }}>
-      <ThemeProvider theme={siteTheme} mode={mode}>{children}</ThemeProvider>
+      <ThemeProvider theme={siteTheme} mode={mode}>
+        {children}
+      </ThemeProvider>
     </Ctx>
   );
 }

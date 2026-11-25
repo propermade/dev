@@ -13,11 +13,12 @@ export const pages: PageMeta[] = [
     title: `${site.name}: ${home.title}`,
     description: site.summary,
   },
-  { path: "/work", title: `Selected Work · ${site.name}`, description: "Selected Work" },
+  { path: "/work", title: `Work · ${site.name}`, description: "Selected Work" },
 ];
 
 const url = (path: string) => `${siteUrl}${path}`;
-const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const esc = (t: string) =>
+  t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 /** Only facts already public in the brief: no phone, no DriveWealth figures. */
 const person = {
@@ -37,22 +38,55 @@ const person = {
 
 function jsonLd(page: PageMeta) {
   const graph: object[] = [
-    { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: siteUrl, name: site.name, inLanguage: "en", publisher: { "@id": `${siteUrl}/#person` } },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: site.name,
+      inLanguage: "en",
+      publisher: { "@id": `${siteUrl}/#person` },
+    },
     person,
   ];
   if (page.path === "/") {
-    graph.push({ "@type": "ProfilePage", "@id": `${siteUrl}/#profile`, url: siteUrl, name: page.title, mainEntity: { "@id": `${siteUrl}/#person` }, isPartOf: { "@id": `${siteUrl}/#website` } });
+    graph.push({
+      "@type": "ProfilePage",
+      "@id": `${siteUrl}/#profile`,
+      url: siteUrl,
+      name: page.title,
+      mainEntity: { "@id": `${siteUrl}/#person` },
+      isPartOf: { "@id": `${siteUrl}/#website` },
+    });
   } else {
     graph.push(
-      { "@type": "WebPage", "@id": `${url(page.path)}#page`, url: url(page.path), name: page.title, description: page.description, author: { "@id": `${siteUrl}/#person` }, isPartOf: { "@id": `${siteUrl}/#website` } },
-      { "@type": "BreadcrumbList", itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl + "/" },
-        { "@type": "ListItem", position: 2, name: page.path.replaceAll("/", ""), item: url(page.path) },
-      ] },
+      {
+        "@type": "WebPage",
+        "@id": `${url(page.path)}#page`,
+        url: url(page.path),
+        name: page.title,
+        description: page.description,
+        author: { "@id": `${siteUrl}/#person` },
+        isPartOf: { "@id": `${siteUrl}/#website` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: siteUrl + "/" },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: page.path.replaceAll("/", ""),
+            item: url(page.path),
+          },
+        ],
+      },
     );
   }
   // "<" is escaped so page text can never close the script element.
-  return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replaceAll("<", "\\u003c");
+  return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replaceAll(
+    "<",
+    "\\u003c",
+  );
 }
 
 /** The <head> tags for a route: title, description, canonical, Open Graph, Twitter, JSON-LD. */
@@ -102,7 +136,12 @@ export const robotsTxt = () =>
     "User-agent: *",
     "Allow: /",
     "",
-    ...crawlers.flatMap((c) => [`# ${c.kind}`, `User-agent: ${c.agent}`, c.allow ? "Allow: /" : "Disallow: /", ""]),
+    ...crawlers.flatMap((c) => [
+      `# ${c.kind}`,
+      `User-agent: ${c.agent}`,
+      c.allow ? "Allow: /" : "Disallow: /",
+      "",
+    ]),
     `Sitemap: ${url("/sitemap.xml")}`,
     "",
   ].join("\n");

@@ -1,7 +1,14 @@
 // Content for /work. Media is placeholder until real screenshots, recordings and code arrive.
 export type Shot = { title: string; caption: string; src?: string; alt?: string };
 export type Snippet = { file: string; lang: string; note: string; code: string };
-export type Recording = { title: string; length: string; transcript: string; src?: string; poster?: string; captions?: string };
+export type Recording = {
+  title: string;
+  length: string;
+  transcript: string;
+  src?: string;
+  poster?: string;
+  captions?: string;
+};
 export type Project = {
   id: string;
   kind: "ui" | "ai";
@@ -12,14 +19,15 @@ export type Project = {
   tags: string[];
   facts: [string, string][];
   links: { label: string; href: string }[];
-  shots: Shot[];
-  recording: Recording;
-  code: Snippet[];
+  shots?: Shot[];
+  recordings?: Recording[];
+  code?: Snippet[];
 };
 
 export const workIntro = {
   title: "Platform standards that scale",
-  summary: "Independent work on design systems and agent workflows that let an organization set a standard once and have tooling enforce it. Each has screenshots, a recording and the code that matters.",
+  summary:
+    "Four example projects, built around one problem I've worked on since creating a design system for a Fortune 20 at Razorfish: making an organization's standards the default path, so quality doesn't depend on who reviewed the change. A design system that enforces its own rules, two reference apps that test it against dense and live data, and an agent workflow where verification, not the agent, decides what's done.",
 };
 
 export const projects: Project[] = [
@@ -27,64 +35,201 @@ export const projects: Project[] = [
     id: "ui",
     kind: "ui",
     kindLabel: "Design system",
-    title: "Design systems that enforce their own rules",
-    summary: "One token source feeding code, Storybook and Claude Design.",
-    body: "A shared React package of accessible components and a theme, built from one set of design tokens. Product teams import UI from one package, and tooling checks the rules instead of review comments.",
-    tags: ["React", "StyleX", "W3C Design Tokens", "Storybook", "WCAG 2.2"],
+    title: "A design system that enforces its own rules",
+    summary: "Tokens, components and checks built so the standard holds without review.",
+    body: "The system rests on one decision: the standard has to be cheaper to follow than to bypass. Design tokens live in a single W3C-format source, and everything downstream is generated from it: the theme, per-mode exports, the component inventory, a Claude Design mirror and the docs. Checks fail when any of it goes stale. Components are modular and atomic, each with a clear API and accessibility built in. Product teams consume one package, and accessibility, coverage and token drift are CI gates, not review comments. That is how a design system scales across teams without its central team becoming the bottleneck.",
+    tags: ["React", "Astryx", "W3C Design Tokens", "Data grids", "Storybook", "Bun monorepo"],
+    facts: [
+      ["Role", "Architecture, design and build"],
+      ["Approach", "One token source, generated outputs, CI gates"],
+      ["Scope", "200+ themeable tokens, five packages and a reference app"],
+      ["Gate", "95% test coverage threshold on core, design and the reference app"],
+    ],
+    links: [{ label: "Source on GitHub", href: "https://github.com/propermade/ui" }],
+  },
+  {
+    id: "central",
+    kind: "ui",
+    kindLabel: "Reference app",
+    title: "Interfaces for users working with live, partial data",
+    summary: "A reference console designed for the failure modes, not just the happy path.",
+    body: "Operational tools fail in the gaps: a source goes quiet, a command is accepted but not yet applied, a figure is the last known value rather than the current one. This console treats those states as part of the design. A stale source is dimmed and leaves a gap in the history instead of a flat line, and a control says a change was sent, not applied. It exercises the system's data grids, charts, forms and theming at full density, on high-throughput, low-latency dynamic data. Each service's API requests and responses run in its own dedicated web worker, which keeps network work off the main thread.",
+    tags: ["React", "Data grids", "Charts", "Forms", "Light and dark themes"],
     facts: [
       ["Role", "Design and build"],
-      ["Packages", "core, design, demo, docs"],
-      ["Standard", "95% coverage gate, AAA text contrast"],
+      ["Focus", "Stale data, confirmation states, dense tables"],
+      ["Themes", "Light, dark and system"],
     ],
-    links: [
-      { label: "Source on GitHub", href: "https://github.com/properinteractive/ui" },
-      { label: "UI packages site", href: "https://propermade.github.io/ui/" },
-    ],
+    links: [],
     shots: [
-      { title: "System map", caption: "Design tokens, core UI and a demo app, independently useful and connected by design." },
-      { title: "Token editor", caption: "Drag the radius and the components re-theme from one CSS variable." },
-      { title: "Shared context", caption: "AppShell, SideNav and ThemeToggle shown as an owner tree and a Storybook view." },
-      { title: "Diagrams and docs", caption: "Generated component trees and a searchable view of the repo's Markdown." },
+      {
+        title: "Summary and history",
+        caption: "Metric cards above a multi-series history chart, with series and range controls.",
+        src: "/media/central/C01_summary_chart.jpg",
+        alt: "Dashboard with a row of summary metric cards above a line chart of three series and an overall series.",
+      },
+       {
+        title: "Light theme",
+        caption: "The same screen in the light theme.",
+        src: "/media/central/C02_light_theme.jpg",
+        alt: "Dashboard in the light theme with metric cards above a multi-series line chart.",
+      },
+      {
+        title: "Scrub to inspect",
+        caption: "Hovering the chart shows every series at that moment.",
+        src: "/media/central/C03_chart_tooltip.jpg",
+        alt: "Line chart with a tooltip listing each series' value at the hovered time.",
+      },
+      {
+        title: "Dense table, stale source",
+        caption:
+          "A banner says some rows come from a source that stopped reporting, and dims them.",
+        src: "/media/central/C04_table_stale_banner.jpg",
+        alt: "Data table of positions with a blue notice banner, summary cards, a search field and a source filter.",
+      },
+      {
+        title: "Row detail",
+        caption: "Selecting a row opens a drawer with its own metrics and history chart.",
+        src: "/media/central/C05_detail_drawer.jpg",
+        alt: "Side drawer showing metric cards and a line chart for one selected row, over a dimmed table.",
+      },
+      {
+        title: "Per-source switches",
+        caption: "Each source has its own switches and the time it last reported.",
+        src: "/media/central/C06_toggle_controls.jpg",
+        alt: "Three panels of labeled toggle switches, one per source, each with a last-reported time.",
+      },
+      {
+        title: "Review before sending",
+        caption: "A form that states what a change will and won't do, then asks for review.",
+        src: "/media/central/C07_review_form.jpg",
+        alt: "Form with a select, a text field and two optional toggles, beside a notice that published is not applied.",
+      },
     ],
-    recording: {
-      title: "Keyboard and state behaviour",
-      length: "1:42",
-      transcript: "Placeholder transcript. A captioned walkthrough of tabbing through a segmented control, a menu and a dialog, with focus order and announced states described in text.",
-    },
-    code: [
+    recordings: [
       {
-        file: "packages",
-        lang: "sh",
-        note: "The packages, one vocabulary from token to screen",
-        code: `@propermade/design   # W3C tokens, light/dark exports
-@propermade/core     # components, app shell, data grids, auth
-@propermade/demo     # reference app that exercises them
-@propermade/docs     # tracked Markdown as a browsable site`,
+        title: "Live data and stale sources",
+        length: "1:00",
+        transcript:
+          "Placeholder transcript. Summary cards and a history chart update, a source stops reporting and is dimmed, and the chart shows a gap instead of a flat line.",
       },
       {
-        file: "tokens.json",
-        lang: "json",
-        note: "A token, as defined",
-        code: `"element": {
-  "$type": "dimension",
-  "$value": "8px",
-  "$extensions": {
-    "com.propermade": { "css": "--radius-element" }
-  }
-}`,
+        title: "Review and send a change",
+        length: "0:45",
+        transcript:
+          "Placeholder transcript. A control form is filled in, reviewed and sent, and the page states that the change is on its way, not yet applied.",
+      },
+    ],
+  },
+  {
+    id: "canopy",
+    kind: "ui",
+    kindLabel: "Reference app",
+    title: "A team workspace for nonprofit financial record keeping",
+    summary: "Canopy Ledger: a team workspace for nonprofit financial record keeping.",
+    body: "A working product built on the design system end to end, across six pages: app shell, cards, ledger tables, progress bars, segmented controls and status chips. It puts the components to work in a real product shape instead of isolated docs examples.",
+    tags: ["React", "Design tokens", "Data tables", "Light theme"],
+    facts: [
+      ["Role", "Concept, design and build"],
+      ["Data", "Sample workspace, read-only"],
+      ["Pages", "Overview, Transactions, Funds, Budgets, Reports, Team"],
+    ],
+    links: [],
+    shots: [
+      {
+        title: "Overview",
+        caption:
+          "Four balance cards and the latest ledger activity, with a persistent sample-workspace notice.",
+        src: "/media/canopy/S01_overview_top.jpg",
+        alt: "Canopy Ledger overview: balance cards for cash, restricted balance, income and expenses above a latest-activity list.",
       },
       {
-        file: "SegmentedControl.tsx",
-        lang: "tsx",
-        note: "A component's API in use",
-        code: `<SegmentedControl.Root
-  value={view}
-  onChange={setView}
-  label="View mode"
->
-  <SegmentedControl.Item value="grid" label="Grid" />
-  <SegmentedControl.Item value="list" label="List" />
-</SegmentedControl.Root>`,
+        title: "Budget pulse",
+        caption:
+          "Category spending against plan, with colour marking how close each line is to its limit.",
+        src: "/media/canopy/S02_overview_latest_activity.jpg",
+        alt: "Latest activity ledger beside a budget pulse panel with progress bars per category.",
+      },
+      {
+        title: "Transactions",
+        caption: "A read-only ledger with search and filters for activity and fund.",
+        src: "/media/canopy/S04_transactions_top.jpg",
+        alt: "Transactions page listing twelve entries with a search field and two filter menus.",
+      },
+      {
+        title: "Entry detail",
+        caption: "An expanded row shows the memo and reference without leaving the list.",
+        src: "/media/canopy/S05_transactions_memo_expanded.jpg",
+        alt: "A ledger row expanded to show its memo and reference number.",
+      },
+      {
+        title: "Funds and grants",
+        caption:
+          "Balances by purpose, with restricted funds visually separate from unrestricted ones.",
+        src: "/media/canopy/S06_funds_top.jpg",
+        alt: "Funds and grants page with fund cards showing balances and purposes.",
+      },
+      {
+        title: "Active commitments",
+        caption: "Grant awards with spend against award and reporting dates.",
+        src: "/media/canopy/S07_funds_active_commitments.jpg",
+        alt: "Active commitments table with spend-versus-award bars and on-track status chips.",
+      },
+      {
+        title: "Budget vs actuals",
+        caption: "Planned and actual spend per category, with an organization-wide summary.",
+        src: "/media/canopy/S08_budgets_top.jpg",
+        alt: "Budgets page with per-category bars next to an operating picture summary.",
+      },
+      {
+        title: "Close question",
+        caption: "A plain-language prompt sits beside the figures it refers to.",
+        src: "/media/canopy/S09_budgets_close_question.jpg",
+        alt: "Budget bars with a close-question callout about program supplies.",
+      },
+      {
+        title: "Reports by category",
+        caption: "A meeting-friendly view of where resources are going, grouped by category.",
+        src: "/media/canopy/S10_reports_by_category.jpg",
+        alt: "Reports page grouping spend by category with a board-packet context panel.",
+      },
+      {
+        title: "Reports by fund",
+        caption: "The same report regrouped by fund with a segmented control.",
+        src: "/media/canopy/S11_reports_by_fund.jpg",
+        alt: "Reports page after switching the segmented control to group by fund.",
+      },
+      {
+        title: "Team and history",
+        caption: "Who has access and a record of recent activity.",
+        src: "/media/canopy/S12_team_history_top.jpg",
+        alt: "Team and history page listing roles beside a timeline of recent entries.",
+      },
+    ],
+    recordings: [
+      {
+        title: "Overview and budget pulse",
+        length: "0:28",
+        transcript:
+          "The overview of a sample workspace: four balance cards and a latest-activity ledger. Scrolling down to the budget pulse, where category spending is shown as bars against plan. Colour marks how close each category is to its limit.",
+      },
+      {
+        title: "Ledger and entry detail",
+        length: "0:24",
+        transcript:
+          "Opening Transactions: a read-only ledger of twelve entries with search and filters. Selecting an entry expands its memo and reference below the row.",
+      },
+      {
+        title: "Funds, grants and budgets",
+        length: "0:30",
+        transcript:
+          "Funds and grants: balances by purpose, with restricted funds kept apart from unrestricted ones. Budgets: spending against plan by category, and a plain-language close question.",
+      },
+      {
+        title: "Reports and team history",
+        length: "0:36",
+        transcript:
+          "Reports: the same figures grouped by category, then toggled to group by fund. Team and history: who has access and a record of recent activity.",
       },
     ],
   },
@@ -92,57 +237,15 @@ export const projects: Project[] = [
     id: "ai",
     kind: "ai",
     kindLabel: "Agent workflow",
-    title: "Agent workflows with verification gates",
-    summary: "Personas, skills and a DAG engine from spec to shipped PR.",
-    body: "An agent harness for a spec, build, review, ship and track workflow. \"It's done\" is decided by scripts and people, not by the agent saying so. Each step passes a check or hands back to the agent with the failure.",
-    tags: ["TypeScript", "DAG engine", "Claude Code", "Hooks", "Plugins"],
+    title: "Agent workflows with verification built in",
+    summary: "A harness where scripts and people, not the agent, decide what's done.",
+    body: "Agents are fast and unreliable judges of their own work, so the harness separates doing from verifying. Each workflow is a directed acyclic graph. Mechanical steps are scripts that must pass, judgment steps pause for an agent or a person, and loops are bounded. Design, contracts and failing tests need human approval and are fingerprinted, so an agent can't quietly rewrite a test to get green. The result is delegation with evidence: each pull request carries the commands that were run and their output.",
+    tags: ["Python", "DAG engine", "Claude Code", "Hooks", "Plugins"],
     facts: [
-      ["Role", "Design and build"],
-      ["Status", "Engine and ticket flow live; Slack and Jira offline only"],
+      ["Scope", "Personas, skills and six installable plugins"],
+      ["Approach", "Deterministic workflows, scripted gates, human approval at judgment points"],
       ["Gates", "Design, contracts and failing tests need a person"],
     ],
-    links: [
-      { label: "Source on GitHub", href: "https://github.com/properinteractive" },
-      { label: "Status table", href: "https://github.com/properinteractive" },
-    ],
-    shots: [
-      { title: "A run, start to PR", caption: "Nine steps from Program Board check to CI fix loop." },
-      { title: "Approval gate", caption: "Approved files are fingerprinted and re-checked before the PR." },
-      { title: "PR evidence", caption: "Commands run and their output, not an assertion." },
-      { title: "Guardrail hook", caption: "A blocked force-push, with the reason shown." },
-    ],
-    recording: {
-      title: "A run, start to passing gates",
-      length: "3:20",
-      transcript: "Placeholder transcript. A ticket enters the workflow, a person approves the design and the failing tests, the implement loop turns the checks green, and the PR opens carrying its evidence.",
-    },
-    code: [
-      {
-        file: "workflow.ts",
-        lang: "ts",
-        note: "A workflow as steps with checks between them",
-        code: `export const ticketToPr = dag({
-  steps: [
-    step("spec"),
-    step("design", { gate: "person-approves" }),
-    step("failing-tests", { gate: "real-red" }),
-    step("implement", { loop: { until: "checks-green", max: 5 } }),
-    step("scope-check"),
-    step("pr", { evidence: true }),
-  ],
-});`,
-      },
-      {
-        file: "guardrail.sh",
-        lang: "sh",
-        note: "Block irreversible commands",
-        code: `# PreToolUse hook
-case "$COMMAND" in
-  *"push --force"*|*"rm -rf /"*)
-    echo "Blocked: irreversible command" >&2
-    exit 2 ;;
-esac`,
-      },
-    ],
+    links: [{ label: "Source on GitHub", href: "https://github.com/propermade/ai" }],
   },
 ];

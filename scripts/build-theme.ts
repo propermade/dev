@@ -8,7 +8,9 @@ for (const [fg, bg, min, modes = [0, 1] as (0 | 1)[]] of pairs) {
   for (const mode of modes) {
     const r = ratio(fg, bg, mode);
     if (r < min) {
-      console.error(`contrast ${fg} on ${bg} (${mode ? "dark" : "light"}): ${r.toFixed(2)} < ${min}`);
+      console.error(
+        `contrast ${fg} on ${bg} (${mode ? "dark" : "light"}): ${r.toFixed(2)} < ${min}`,
+      );
       failed++;
     }
   }
@@ -16,5 +18,7 @@ for (const [fg, bg, min, modes = [0, 1] as (0 | 1)[]] of pairs) {
 if (failed) process.exit(1);
 console.log(`palette ok (${pairs.reduce((n, p) => n + (p[3]?.length ?? 2), 0)} contrast checks)`);
 
-const build = spawnSync("bunx", ["astryx", "theme", "build", "src/theme/theme.ts"], { stdio: "inherit" });
+const build = spawnSync("bunx", ["astryx", "theme", "build", "src/theme/theme.ts"], {
+  stdio: "inherit",
+});
 if (build.status) process.exit(build.status);

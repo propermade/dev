@@ -9,10 +9,13 @@ export async function render(url: string) {
   const router = createAppRouter(createMemoryHistory({ initialEntries: [url] }));
   await router.load();
   const title = router.state.matches.at(-1)?.meta?.find((m) => m?.title)?.title ?? "";
-  return { html: renderToString(
+  return {
+    html: renderToString(
       // The client router wraps its matches in a Suspense boundary; mirror it so hydration lines up.
       <Suspense fallback={null}>
         <RouterProvider router={router} />
       </Suspense>,
-    ), title: String(title) };
+    ),
+    title: String(title),
+  };
 }
