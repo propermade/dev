@@ -222,13 +222,17 @@ function ProjectSection({ p, n }: { p: Project; n: number }) {
                 key={l.label}
                 className={i === 0 ? "btn primary" : "btn"}
                 href={l.href}
-                target="_blank"
-                rel="noopener"
+                {...(l.href.startsWith("mailto:") ? {} : { target: "_blank", rel: "noopener" })}
               >
-                {l.label}{" "}
-                <span className="arrow" aria-hidden="true">
-                  ↗
-                </span>
+                {l.label}
+                {l.href.startsWith("mailto:") ? null : (
+                  <>
+                    {" "}
+                    <span className="arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  </>
+                )}
               </a>
             ))}
           </div>
