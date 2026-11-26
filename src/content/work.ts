@@ -35,7 +35,7 @@ const requestAccess = (repo: string) => ({
 export const workIntro = {
   title: "Platform standards that scale",
   summary:
-    "Four example projects, built around one problem I've worked on since creating a design system for a Fortune 20 at Razorfish: making an organization's standards the default path, so quality doesn't depend on who reviewed the change. A design system that enforces its own rules, two reference apps that test it against dense and live data, and an agent workflow where verification, not the agent, decides what's done.",
+    "Four example projects, built around one problem I've worked on since creating a design system for a Fortune 20 at Razorfish: making an organization's standards the default path, so quality doesn't depend on who reviewed the change. A design system that enforces its own rules, two applications that test it against dense and live data, and an agent workflow where verification, not the agent, decides what's done.",
 };
 
 export const projects: Project[] = [
@@ -50,8 +50,8 @@ export const projects: Project[] = [
     facts: [
       ["Role", "Architecture, design and build"],
       ["Approach", "One token source, generated outputs, CI gates"],
-      ["Scope", "200+ themeable tokens, five packages and a reference app"],
-      ["Gate", "95% test coverage threshold on core, design and the reference app"],
+      ["Scope", "200+ themeable tokens, five packages and an application"],
+      ["Gate", "95% test coverage threshold on core, design and the application"],
     ],
     links: [{ label: "Source on GitHub", href: "https://github.com/propermade/ui" }, requestAccess("propermade/ui")],
   },
@@ -133,7 +133,7 @@ export const projects: Project[] = [
   {
     id: "canopy",
     kind: "ui",
-    kindLabel: "Reference app",
+    kindLabel: "Application",
     title: "A team workspace for nonprofit financial record keeping",
     summary: "Canopy Ledger: a team workspace for nonprofit financial record keeping.",
     body: "A working product built on the design system end to end, across six pages: app shell, cards, ledger tables, progress bars, segmented controls and status chips. It puts the components to work in a real product shape instead of isolated docs examples.",
