@@ -58,15 +58,16 @@ export const projects: Project[] = [
   {
     id: "central",
     kind: "ui",
-    kindLabel: "Reference app",
-    title: "Interfaces for users working with live, partial data",
-    summary: "A reference console designed for the failure modes, not just the happy path.",
-    body: "Operational tools fail in the gaps: a source goes quiet, a command is accepted but not yet applied, a figure is the last known value rather than the current one. This console treats those states as part of the design. A stale source is dimmed and leaves a gap in the history instead of a flat line, and a control says a change was sent, not applied. It exercises the system's data grids, charts, forms and theming at full density, on high-throughput, low-latency dynamic data. Each service's API requests and responses run in its own dedicated web worker, which keeps network work off the main thread.",
-    tags: ["React", "Data grids", "Charts", "Forms", "Light and dark themes"],
+    kindLabel: "Application",
+    title: "Interfaces for extremely high-volume streaming data",
+    summary: "A console built to stay fast and legible as data streams in at high volume and low latency.",
+    body: "This console handles extremely high-volume, low-latency streaming data, and it puts the system's data grids, charts, forms and theming to work at full density while updates arrive continuously. Each service's API requests and responses run in their own dedicated web worker, which keeps network work off the main thread so the interface stays responsive. A few quiet affordances keep it seamless when a source drops out: stale rows are dimmed, the history leaves a gap instead of a flat line, requests retry without the user managing them, and a control says whether a change was sent or applied.",
+    tags: ["React", "Streaming data", "Web workers", "Data grids", "Charts", "Forms", "Light and dark themes"],
     facts: [
       ["Role", "Design and build"],
-      ["Focus", "Stale data, confirmation states, dense tables"],
+      ["Focus", "High-volume streaming data, dense tables, a responsive UI"],
       ["Themes", "Light, dark and system"],
+      ["Media", "Screenshots and recordings use mock data"],
     ],
     links: [],
     shots: [
@@ -89,9 +90,9 @@ export const projects: Project[] = [
         alt: "Line chart with a tooltip listing each series' value at the hovered time.",
       },
       {
-        title: "Dense table, stale source",
+        title: "Dense table",
         caption:
-          "A banner says some rows come from a source that stopped reporting, and dims them.",
+          "A table at full density. A notice marks rows from a source that stopped reporting, and they are dimmed.",
         src: "/media/central/C04_table_stale_banner.jpg",
         alt: "Data table of positions with a blue notice banner, summary cards, a search field and a source filter.",
       },
@@ -116,10 +117,10 @@ export const projects: Project[] = [
     ],
     recordings: [
       {
-        title: "Live data and stale sources",
+        title: "Live streaming data",
         length: "1:00",
         transcript:
-          "Placeholder transcript. Summary cards and a history chart update, a source stops reporting and is dimmed, and the chart shows a gap instead of a flat line.",
+          "Placeholder transcript. Summary cards and a history chart update continuously as data streams in. One source stops reporting and is dimmed, and the chart leaves a gap instead of a flat line.",
       },
       {
         title: "Review and send a change",
