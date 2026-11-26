@@ -1,3 +1,5 @@
+import { site } from "./site";
+
 // Content for /work. Media is placeholder until real screenshots, recordings and code arrive.
 export type Shot = { title: string; caption: string; src?: string; alt?: string };
 export type Snippet = { file: string; lang: string; note: string; code: string };
@@ -24,6 +26,12 @@ export type Project = {
   code?: Snippet[];
 };
 
+/** The source repos are private and GitHub has no request-access page for a private repo, so access is requested by email. */
+const requestAccess = (repo: string) => ({
+  label: "Request access",
+  href: `mailto:${site.email}?subject=${encodeURIComponent(`Access request: ${repo}`)}`,
+});
+
 export const workIntro = {
   title: "Platform standards that scale",
   summary:
@@ -45,7 +53,7 @@ export const projects: Project[] = [
       ["Scope", "200+ themeable tokens, five packages and a reference app"],
       ["Gate", "95% test coverage threshold on core, design and the reference app"],
     ],
-    links: [{ label: "Source on GitHub", href: "https://github.com/propermade/ui" }],
+    links: [{ label: "Source on GitHub", href: "https://github.com/propermade/ui" }, requestAccess("propermade/ui")],
   },
   {
     id: "central",
@@ -246,6 +254,6 @@ export const projects: Project[] = [
       ["Approach", "Deterministic workflows, scripted gates, human approval at judgment points"],
       ["Gates", "Design, contracts and failing tests need a person"],
     ],
-    links: [{ label: "Source on GitHub", href: "https://github.com/propermade/ai" }],
+    links: [{ label: "Source on GitHub", href: "https://github.com/propermade/ai" }, requestAccess("propermade/ai")],
   },
 ];
