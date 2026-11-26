@@ -73,7 +73,7 @@ export function Home() {
               </span>{" "}
               strategy: the architecture, standards and teams that let product organizations ship
               accessible interfaces consistently at scale. I came to engineering through art, with
-              fine arts degrees from Pratt and Tulane.
+              fine arts degrees from Pratt Institute and Tulane University.
             </p>
             <div className="cta rise" style={{ "--i": 4 } as CSSProperties}>
               <Link to="/work/" className="btn primary">

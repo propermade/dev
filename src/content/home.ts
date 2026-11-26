@@ -28,7 +28,7 @@ export const home: PageContent = {
         },
         {
           kind: "p",
-          text: "I came to engineering through art. I studied painting at Pratt, then taught myself to build, and the mix of craft and systems thinking still shapes my work. Design rules should be precise enough to enforce and clear enough that teams choose to follow them. In my first freelance design role I turned a gap in the company into its web development function, and I have been building capability, not just shipping features, ever since.",
+          text: "I came to engineering through art. I studied painting at Pratt Institute, then taught myself to build, and the mix of craft and systems thinking still shapes my work. Design rules should be precise enough to enforce and clear enough that teams choose to follow them. In my first freelance design role I turned a gap in the company into its web development function, and I have been building capability, not just shipping features, ever since.",
         },
       ],
     },
@@ -44,7 +44,7 @@ export const home: PageContent = {
             "AcrobatAnt: 50% better on-time delivery.",
             "Anaconda: scaled frontend standards after a $24M Series A.",
             "Razorfish: design system work for Fortune 20 accounts.",
-            "Teach For America; teaching at Tulane.",
+            "Teach For America; teaching at Tulane University.",
             "15+ years building frontend platforms and design systems.",
           ],
         },

@@ -11,6 +11,8 @@ const banned: [RegExp, string][] = [
   [/40%\s+delivery\s+velocity/i, "unpublished DriveWealth figure (40% velocity)"],
   [/DriveHub/i, "private DriveWealth detail (DriveHub)"],
   [/\(?\b\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\b/, "possible phone number"],
+  [/\bPratt\b(?!\s+Institute)/, "use \"Pratt Institute\", never \"Pratt\""],
+  [/\bTulane\b(?!\s+University)/, "use \"Tulane University\", never \"Tulane\""],
 ];
 
 async function* walk(dir: string): AsyncGenerator<string> {
