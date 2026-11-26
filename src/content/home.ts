@@ -1,7 +1,7 @@
 import type { PageContent } from "./types";
 
 export const aboutLead =
-  "I'm an engineering leader and UI architect who works where design, engineering and organizational standards meet. My focus is design systems, agent orchestration frameworks, and real-time platforms for high-volume streaming data.";
+  "I'm an engineering leader and UI architect who works where design, engineering and organizational standards meet. My focus is platform design systems, agent orchestration frameworks, and application architecture for real-time, high-volume, streaming data.";
 
 export const home: PageContent = {
   title: "Design Systems & Frontend Platform Lead",
@@ -28,7 +28,7 @@ export const home: PageContent = {
         },
         {
           kind: "p",
-          text: "I came to engineering through art. I studied painting at Pratt Institute, then taught myself to build, and the mix of craft and systems thinking still shapes my work. Design rules should be precise enough to enforce and clear enough that teams choose to follow them. In my first freelance design role I turned a gap in the company into its web development function, and I have been building capability, not just shipping features, ever since.",
+          text: "I came to engineering through art and design. I studied painting at Pratt Institute, then taught myself to build, and the mix of craft and systems thinking still shapes my work. Design rules should be precise enough to enforce and clear enough that teams choose to follow them. In my first freelance design role I turned a gap in the company into its web development function, and I have been building capability, not just shipping features, ever since.",
         },
       ],
     },
