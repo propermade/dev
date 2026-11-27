@@ -46,6 +46,8 @@
 - Commits: `ced593a content: update contact email`; `f835386 fix(work): keep code bar on one row and raise primary button contrast`; `3f560a2 content(work): retitle work page headline`; `0dee0a2 content: rewrite hero and about copy for a staff-plus audience`; `7d2b2da feat(work): add project list with screenshot, recording and code tabs`; `88b7240 ci: remove GITHUB_ prefix from env secret`
 
 ## 2026-11-25 23:17 UTC — session end (auto) · branch `ci/deploy-env`
+
 <!-- session-memory: session=5ba49ec7-aa9b-423d-a5e6-cdfd29b1e4ff kind=auto-end at=1795648648 -->
+
 - Changed (88): `.github/workflows/pages.yml`, `.npmrc`, `.vscode/settings.json`, `bun.lock`, `docs/.DS_Store`, `docs/aeo.md`, `docs/canopy/.DS_Store`, `docs/canopy/S01_overview_top.jpg`, `docs/canopy/S02_overview_latest_activity.jpg`, `docs/canopy/S04_transactions_top.jpg` (+78 more)
 - Commits: `3bf8559 docs: media cleanup`; `0f16414 feat: add work content`; `ced593a content: update contact email`; `f835386 fix(work): keep code bar on one row and raise primary button contrast`; `3f560a2 content(work): retitle work page headline`; `0dee0a2 content: rewrite hero and about copy for a staff-plus audience`; `7d2b2da feat(work): add project list with screenshot, recording and code tabs`; `88b7240 ci: remove GITHUB_ prefix from env secret`

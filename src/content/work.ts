@@ -18,6 +18,7 @@ export type Project = {
   title: string;
   summary: string;
   body: string;
+  disclaimer?: string;
   tags: string[];
   facts: [string, string][];
   links: { label: string; href: string }[];
@@ -50,24 +51,36 @@ export const projects: Project[] = [
     facts: [
       ["Role", "Architecture, design and build"],
       ["Approach", "One token source, generated outputs, CI gates"],
-      ["Scope", "200+ themeable tokens, five packages and an application"],
+      ["Scope", "200+ themeable tokens with sensible defaults, five packages and a demo app"],
       ["Gate", "95% test coverage threshold on core, design and the application"],
     ],
-    links: [{ label: "Source on GitHub", href: "https://github.com/propermade/ui" }, requestAccess("propermade/ui")],
+    links: [
+      { label: "Source on GitHub", href: "https://github.com/propermade/ui" },
+      requestAccess("propermade/ui"),
+    ],
   },
   {
     id: "central",
     kind: "ui",
     kindLabel: "Application",
-    title: "Interfaces for extremely high-volume streaming data",
-    summary: "A console built to stay fast and legible as data streams in at high volume and low latency.",
+    title: "User interfaces for business-critical, high-volume streaming data",
+    summary:
+      "A console built to stay fast and legible as data streams in at high volume and low latency.",
     body: "This console handles extremely high-volume, low-latency streaming data, and it puts the system's data grids, charts, forms and theming to work at full density while updates arrive continuously. Each service's API requests and responses run in their own dedicated web worker, which keeps network work off the main thread so the interface stays responsive. A few quiet affordances keep it seamless when a source drops out: stale rows are dimmed, the history leaves a gap instead of a flat line, requests retry without the user managing them, and a control says whether a change was sent or applied.",
-    tags: ["React", "Streaming data", "Web workers", "Data grids", "Charts", "Forms", "Light and dark themes"],
+    tags: [
+      "React",
+      "Streaming data",
+      "Web workers",
+      "Data grids",
+      "Charts",
+      "Forms",
+      "Light and dark themes",
+    ],
+    disclaimer: "Screenshots use mock data",
     facts: [
       ["Role", "Design and build"],
       ["Focus", "High-volume streaming data, dense tables, a responsive UI"],
       ["Themes", "Light, dark and system"],
-      ["Media", "Screenshots and recordings use mock data"],
     ],
     links: [],
     shots: [
@@ -77,7 +90,7 @@ export const projects: Project[] = [
         src: "/media/central/C01_summary_chart.jpg",
         alt: "Dashboard with a row of summary metric cards above a line chart of three series and an overall series.",
       },
-       {
+      {
         title: "Light theme",
         caption: "The same screen in the light theme.",
         src: "/media/central/C02_light_theme.jpg",
@@ -255,6 +268,9 @@ export const projects: Project[] = [
       ["Approach", "Deterministic workflows, scripted gates, human approval at judgment points"],
       ["Gates", "Design, contracts and failing tests need a person"],
     ],
-    links: [{ label: "Source on GitHub", href: "https://github.com/propermade/ai" }, requestAccess("propermade/ai")],
+    links: [
+      { label: "Source on GitHub", href: "https://github.com/propermade/ai" },
+      requestAccess("propermade/ai"),
+    ],
   },
 ];

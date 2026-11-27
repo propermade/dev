@@ -28,7 +28,7 @@ export const home: PageContent = {
         },
         {
           kind: "p",
-          text: "I came to engineering through art and design. I studied painting at Pratt Institute, then taught myself to build, and the mix of craft and systems thinking still shapes my work. Design rules should be precise enough to enforce and clear enough that teams choose to follow them. In my first freelance design role I turned a gap in the company into its web development function, and I have been building capability, not just shipping features, ever since.",
+          text: "I came to engineering through art and design. I studied painting at Pratt Institute, where I taught myself to build websites. That mix of craft and systems thinking still shapes my work. Design rules should be precise enough to enforce and clear enough that teams choose to follow them. In my first freelance design role I turned a gap in the company into its web development function, and I have been building capability, not just shipping features, ever since.",
         },
       ],
     },
