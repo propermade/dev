@@ -1,13 +1,15 @@
 // No subpath entry for charts yet, so this comes from the root entry.
 import { TimeSeriesChart, type TimeSeries } from "@propermade/core";
-import { AppShell, Card, Text } from "@propermade/core/components";
+import { AppShell, Button, Card, SegmentedControl, Text } from "@propermade/core/components";
 import { AppGrid, DataSourcesProvider, type AppGridPane } from "@propermade/core/grid";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 
 import { useThemeMode } from "../components/ThemeShell";
 import { FAULT_CHANNEL, type Feed } from "./feeds";
 import { Kpi } from "./Kpi";
 import { demoSources } from "./sources";
+import { themeVars } from "./themeEngine";
+import { ThemePanel, useThemeSettings } from "./ThemePanel";
 
 // Declared at module scope so AppGrid sees a stable reference.
 const panes: AppGridPane[] = [
@@ -51,9 +53,10 @@ function seed(): Walks {
 }
 
 /** Random walks sampled on the main thread, so the cards and chart have something live to draw. */
-function useLiveWalks(): Walks {
+function useLiveWalks(paused: boolean): Walks {
   const [walks, setWalks] = useState<Walks>(() => seed());
   useEffect(() => {
+    if (paused) return;
     const id = setInterval(() => {
       setWalks((prev) => {
         const next = {} as Walks;
@@ -69,7 +72,7 @@ function useLiveWalks(): Walks {
       });
     }, SAMPLE_MS);
     return () => clearInterval(id);
-  }, []);
+  }, [paused]);
   return walks;
 }
 
@@ -121,100 +124,142 @@ function useWide() {
 }
 
 export default function DemoLive() {
-  const walks = useLiveWalks();
+  const [paused, setPaused] = useState(false);
+  const [span, setSpan] = useState("120");
+  const walks = useLiveWalks(paused);
   const { mode, setMode } = useThemeMode();
   const wide = useWide();
+  const [settings, setSettings] = useThemeSettings();
+  const [themeOpen, setThemeOpen] = useState(() => matchMedia("(min-width: 80rem)").matches);
+  const vars = useMemo(() => themeVars(settings) as CSSProperties, [settings]);
+  const n = Number(span);
   const series = useMemo<TimeSeries[]>(
     () => [
-      { id: "index", label: "Composite index", points: walks.index, emphasis: true },
-      { id: "equities", label: "Equities", points: walks.equities },
-      { id: "crypto", label: "Crypto", points: walks.crypto, lineStyle: "dashed" },
+      { id: "index", label: "Composite index", points: walks.index.slice(-n), emphasis: true },
+      { id: "equities", label: "Equities", points: walks.equities.slice(-n) },
+      { id: "crypto", label: "Crypto", points: walks.crypto.slice(-n), lineStyle: "dashed" },
     ],
-    [walks.index, walks.equities, walks.crypto],
+    [walks.index, walks.equities, walks.crypto, n],
   );
   return (
     <section className="band" aria-labelledby="app-h">
       <h2 id="app-h" className="visually-hidden">
         The demo app
       </h2>
-      <div className="app-window">
-        <AppShell
-          appName="Proper demo"
-          logo={<DemoMark />}
-          sideNavItems={[]}
-          topNavItems={[]}
-          activeNavId=""
-          themeMode={mode}
-          handleThemeModeChange={setMode}
-          handleClickNavigation={noop}
-        >
-          <div className="app-page">
-            <div className="kpis">
-              <Kpi
-                label="Composite index"
-                value={last(walks.index).toFixed(2)}
-                delta={change(walks.index)}
-                spark={values(walks.index)}
-              />
-              <Kpi
-                label="Updates per second"
-                value={Math.round(last(walks.throughput)).toLocaleString()}
-                delta={change(walks.throughput)}
-                spark={values(walks.throughput)}
-                detail="vs a minute ago"
-              />
-              <Kpi
-                label="Render latency, p99"
-                value={`${last(walks.latency).toFixed(1)} ms`}
-                delta={change(walks.latency)}
-                upIs="bad"
-                spark={values(walks.latency)}
-                detail="vs a minute ago"
-              />
-              <Kpi label="Feeds live" value="2 of 2" progress={1} detail="Each in its own worker" />
-            </div>
-
-            <Card>
-              <div className="chart-card">
-                <Text weight="semibold">Index history</Text>
-                <TimeSeriesChart label="Composite index" series={series} height={240} live />
-              </div>
-            </Card>
-
-            <div className="workspace-head">
-              <div>
-                <Text weight="semibold">Workspace</Text>
-                <Text type="supporting">
-                  Drag a pane by its handle, resize it from its edges, add or remove panes, and pick
-                  each pane's data source from its settings. Layouts are saved in this browser.
-                </Text>
-              </div>
-              <div className="workspace-actions">
-                <button type="button" className="btn demo-fault" onClick={() => outage("crypto")}>
-                  Take the crypto feed down for 5 seconds
-                </button>
-              </div>
-            </div>
-            <div className="workspace" role="region" aria-label="Workspace">
-              <DataSourcesProvider sources={demoSources}>
-                <AppGrid
-                  layoutId="demo-workspace"
-                  panes={panes}
-                  maxPanes={6}
-                  paneColumns={wide ? 2 : 1}
-                  paneHeight={3}
-                  paneTitleActive
-                  paneActionsActive
+      <div className="app-window" data-theme-open={themeOpen || undefined}>
+        <div className="app-themed" style={vars}>
+          <AppShell
+            appName="Proper demo"
+            logo={<DemoMark />}
+            sideNavItems={[]}
+            topNavItems={[]}
+            activeNavId=""
+            themeMode={mode}
+            handleThemeModeChange={setMode}
+            handleClickNavigation={noop}
+          >
+            <div className="app-page">
+              <div className="app-page-head">
+                <Text weight="semibold">Overview</Text>
+                <Button
+                  size="sm"
+                  variant={themeOpen ? "primary" : "secondary"}
+                  label="Theme"
+                  aria-pressed={themeOpen}
+                  onClick={() => setThemeOpen((open) => !open)}
                 />
-              </DataSourcesProvider>
+              </div>
+              <div className="kpis">
+                <Kpi
+                  label="Composite index"
+                  value={last(walks.index).toFixed(2)}
+                  delta={change(walks.index)}
+                  spark={values(walks.index)}
+                />
+                <Kpi
+                  label="Updates per second"
+                  value={Math.round(last(walks.throughput)).toLocaleString()}
+                  delta={change(walks.throughput)}
+                  spark={values(walks.throughput)}
+                  detail="vs a minute ago"
+                />
+                <Kpi
+                  label="Render latency, p99"
+                  value={`${last(walks.latency).toFixed(1)} ms`}
+                  delta={change(walks.latency)}
+                  upIs="bad"
+                  spark={values(walks.latency)}
+                  detail="vs a minute ago"
+                />
+                <Kpi
+                  label="Feeds live"
+                  value="2 of 2"
+                  progress={1}
+                  detail="Each in its own worker"
+                />
+              </div>
+
+              <Card>
+                <div className="chart-card">
+                  <div className="chart-head">
+                    <Text weight="semibold">Index history</Text>
+                    <div className="chart-controls">
+                      <SegmentedControl.Root value={span} onChange={setSpan} label="Time span">
+                        <SegmentedControl.Item value="60" label="15s" />
+                        <SegmentedControl.Item value="120" label="30s" />
+                        <SegmentedControl.Item value="240" label="60s" />
+                      </SegmentedControl.Root>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        label={paused ? "Resume" : "Pause"}
+                        onClick={() => setPaused((p) => !p)}
+                      />
+                    </div>
+                  </div>
+                  <TimeSeriesChart label="Composite index" series={series} height={240} live />
+                </div>
+              </Card>
+
+              <div className="workspace-head">
+                <div>
+                  <Text weight="semibold">Workspace</Text>
+                  <Text type="supporting">
+                    Drag a pane by its handle, resize it from its edges, add or remove panes, and
+                    pick each pane's data source from its settings. Layouts are saved in this
+                    browser.
+                  </Text>
+                </div>
+                <div className="workspace-actions">
+                  <Button
+                    variant="secondary"
+                    label="Take the crypto feed down for 5 seconds"
+                    onClick={() => outage("crypto")}
+                  />
+                </div>
+              </div>
+              <div className="workspace" role="region" aria-label="Workspace">
+                <DataSourcesProvider sources={demoSources}>
+                  <AppGrid
+                    layoutId="demo-workspace"
+                    panes={panes}
+                    maxPanes={6}
+                    paneColumns={wide ? 2 : 1}
+                    paneHeight={3}
+                    paneTitleActive
+                    paneActionsActive
+                  />
+                </DataSourcesProvider>
+              </div>
+              <p className="demo-note">
+                A crashed worker only takes down its own pane. That pane says it is reconnecting and
+                retries automatically with backoff; if the feed stays down it offers a Retry, and
+                every other pane keeps streaming. The data on this page is generated for the demo.
+              </p>
             </div>
-            <p className="demo-note">
-              A crashed worker only takes down its own pane. That pane says it is reconnecting and
-              retries automatically with backoff; if the feed stays down it offers a Retry, and
-              every other pane keeps streaming. The data on this page is generated for the demo.
-            </p>
-          </div>
-        </AppShell>
+          </AppShell>
+        </div>
+        {themeOpen ? <ThemePanel settings={settings} onChange={setSettings} /> : null}
       </div>
     </section>
   );
