@@ -92,7 +92,7 @@ export const projects: Project[] = [
         "Customizable themes with light and dark modes, and layouts configurable per browser",
       ],
     ],
-    links: [],
+    links: [{ label: "View demo", href: "/demo/" }],
     shots: [
       {
         title: "Summary and history",
