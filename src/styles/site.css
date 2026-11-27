@@ -985,10 +985,146 @@ video {
 
 /* ── /demo ──────────────────────────────────────────────────────────── */
 .app-window {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   border: 1px solid color-mix(in oklab, var(--fg) 25%, transparent);
   border-radius: 0.75rem;
   overflow: hidden;
   background: var(--bg);
+}
+@media (min-width: 80rem) {
+  .app-window[data-theme-open] {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+  }
+  /* Break out of the text column so the app keeps its room beside the editor. */
+  .app-window {
+    inline-size: min(calc(100vw - 3rem), 90rem);
+    margin-inline: calc((100% - min(calc(100vw - 3rem), 90rem)) / 2);
+  }
+}
+.app-themed {
+  min-width: 0;
+}
+.app-page-head,
+.chart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.chart-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.theme-panel {
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border-block-start: 1px solid color-mix(in oklab, var(--fg) 20%, transparent);
+  background: var(--raised);
+}
+@media (min-width: 80rem) {
+  .theme-panel {
+    border-block-start: 0;
+    border-inline-start: 1px solid color-mix(in oklab, var(--fg) 20%, transparent);
+  }
+}
+.theme-head {
+  display: grid;
+  gap: 0.25rem;
+}
+.theme-group {
+  display: grid;
+  gap: 0.5rem;
+}
+.theme-group h3 {
+  margin: 0;
+  font: 600 0.8125rem / 1.2 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.theme-chips,
+.theme-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.font-chip {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid color-mix(in oklab, var(--fg) 30%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.font-chip[aria-pressed="true"] {
+  border-color: var(--link);
+  background: var(--link);
+  color: var(--bg);
+}
+.swatch {
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  outline-offset: 2px;
+}
+.swatch[aria-pressed="true"] {
+  border-color: var(--fg);
+  box-shadow: 0 0 0 2px var(--raised) inset;
+}
+.swatch-site {
+  background: conic-gradient(var(--link), var(--signal), var(--link));
+}
+.swatch-custom {
+  position: relative;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+}
+.swatch-custom input {
+  inline-size: 100%;
+  block-size: 100%;
+  padding: 0;
+  border: 1px dashed color-mix(in oklab, var(--fg) 45%, transparent);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+.theme-range {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.theme-range input {
+  flex: 1;
+  accent-color: var(--link);
+}
+.theme-range output {
+  min-inline-size: 3ch;
+  font: 500 0.875rem var(--font-mono);
+}
+.theme-css-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.theme-css {
+  margin: 0;
+  max-block-size: 12rem;
+  overflow: auto;
+  padding: 0.75rem;
+  border: 1px solid color-mix(in oklab, var(--fg) 20%, transparent);
+  border-radius: 0.5rem;
+  background: var(--bg);
+  font: 400 0.75rem / 1.5 var(--font-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .app-page {
   display: grid;
@@ -1005,8 +1141,11 @@ video {
   gap: 0.35rem;
   padding: 0.25rem;
 }
+.app-page {
+  font-family: var(--font-family-body, inherit);
+}
 .kpi-value {
-  font: 600 1.75rem / 1.1 var(--font-display, inherit);
+  font: 600 1.75rem / 1.1 var(--font-family-heading, var(--font-display, inherit));
   letter-spacing: -0.02em;
 }
 .kpi-detail {
@@ -1048,10 +1187,6 @@ video {
 .workspace-head > div > * + * {
   max-width: 62ch;
   margin-block-start: 0.25rem;
-}
-.demo-fault {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
 }
 /* The canvas the panes live on: taller than the default panes, with a dotted grid, so it is
    obvious they can be moved. */
