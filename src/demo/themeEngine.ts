@@ -83,7 +83,7 @@ export function parseHex(hex: string): [number, number, number] | null {
   const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(hex.trim());
   if (!m) return null;
   let h = m[1]!;
-  if (h.length === 3) h = [...h].map((c) => c + c).join("");
+  if (h.length === 3) h = h.replace(/./g, "$&$&");
   const n = parseInt(h, 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
