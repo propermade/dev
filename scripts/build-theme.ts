@@ -1,6 +1,7 @@
 // Enforces the palette's contrast floors, then builds core's theme (src/theme/site.*) with the Astryx CLI.
 // The palette reaches CSS as theme tokens (see siteTokens in src/theme/theme.ts).
 import { spawnSync } from "node:child_process";
+
 import { pairs, ratio } from "../src/theme/theme";
 
 let failed = 0;

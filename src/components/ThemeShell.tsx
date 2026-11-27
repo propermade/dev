@@ -1,8 +1,10 @@
 import { ThemeProvider, ThemeToggle, type ThemeMode } from "@propermade/core/components";
-import { siteTheme } from "../theme/site.js";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+
 import "../theme/site.css";
 import { flushSync } from "react-dom";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+
+import { siteTheme } from "../theme/site.js";
 
 const key = "theme-mode";
 const Ctx = createContext<{ mode: ThemeMode; setMode: (m: ThemeMode) => void }>({

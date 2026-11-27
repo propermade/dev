@@ -1,6 +1,7 @@
 import { createMemoryHistory, RouterProvider } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { renderToString } from "react-dom/server";
+
 import { createAppRouter, routePaths } from "./router";
 
 export { routePaths };

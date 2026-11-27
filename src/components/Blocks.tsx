@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+
 import type { Block, Media, Section as SectionData } from "../content/types";
 
 export function MediaFigure({ media }: { media: Media }) {

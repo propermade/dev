@@ -1,5 +1,6 @@
 import { RouterProvider } from "@tanstack/react-router";
 import { createRoot, hydrateRoot } from "react-dom/client";
+
 import { createAppRouter } from "./router";
 
 const router = createAppRouter();

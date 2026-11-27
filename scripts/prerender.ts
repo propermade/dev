@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+
 import { headFor, llmsTxt, robotsTxt, sitemapXml } from "../src/seo";
 
 const dist = "dist/client";
