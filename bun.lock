@@ -9,7 +9,7 @@
         "@fontsource/geist-mono": "^5.3.0",
         "@fontsource/geist-sans": "^5.3.0",
         "@heroicons/react": "^2.2.0",
-        "@propermade/core": "^0.3.0",
+        "@propermade/core": "^0.3.2",
         "@stylexjs/stylex": "^0.19.2",
         "@tanstack/react-router": "^1.170.46",
         "react": "^19.3.1",
@@ -200,7 +200,7 @@
 
     "@oxc-project/types": ["@oxc-project/types@0.156.0", "", {}, "sha512-1Duyg48TdJNdyhEB8Xn1L36bT9Pv6GUtlKjHxOys8xkaF/rQq3XJE+bAurSK/AgIz5mGFsb77cn9Pb20+WCScw=="],
 
-    "@propermade/core": ["@propermade/core@0.3.0", "https://npm.pkg.github.com/download/@propermade/core/0.3.0/03474da646fb150a2fbeb37d212f1e1931219444", { "dependencies": { "@astryxdesign/core": "^0.7.15", "@fontsource/space-grotesk": "^5.3.0", "@heroicons/react": "^2.2.0", "@noble/hashes": "^2.4.0", "@stylexjs/stylex": "^0.19.2", "@uidotdev/usehooks": "^2.4.1", "ag-grid-community": "^36.3.0", "ag-grid-enterprise": "^36.3.0", "ag-grid-react": "^36.3.0", "lightweight-charts": "^5.3.0", "oidc-client-ts": "^3.5.0", "react": "^19.3.1", "react-dom": "^19.3.1", "react-error-boundary": "^6.1.6", "react-grid-layout": "^2.3.0", "react-oidc-context": "^3.3.1", "react-resizable": "^4.0.2", "rxjs": "^7.8.2" }, "peerDependencies": { "typescript": "^7" } }, "sha512-K3W9Cqmztop983fp/pbYfctUHISmsnDuB19jgJ0jcLFWMY3oZtgg1VV3w0XZfKTSvgE6jTyG986OqwAzCiLTaw=="],
+    "@propermade/core": ["@propermade/core@0.3.2", "https://npm.pkg.github.com/download/@propermade/core/0.3.2/7ac1b0b96c3497e23123995e588e6e433478412d", { "dependencies": { "@astryxdesign/core": "^0.7.15", "@fontsource/space-grotesk": "^5.3.0", "@heroicons/react": "^2.2.0", "@noble/hashes": "^2.4.0", "@stylexjs/stylex": "^0.19.2", "@uidotdev/usehooks": "^2.4.1", "ag-grid-community": "^36.3.0", "ag-grid-enterprise": "^36.3.0", "ag-grid-react": "^36.3.0", "lightweight-charts": "^5.3.0", "oidc-client-ts": "^3.5.0", "react": "^19.3.1", "react-dom": "^19.3.1", "react-error-boundary": "^6.1.6", "react-grid-layout": "^2.3.0", "react-oidc-context": "^3.3.1", "react-resizable": "^4.0.2", "rxjs": "^7.8.2" }, "peerDependencies": { "typescript": "^7" } }, "sha512-dR8X1uOy3rsAitDnZOHJMTq4oOSzMQQVp1DTg5+hgJA+OcrS3yxp4H1lmOJpXzScI5C7GL/KqGeMcsVjccSG/w=="],
 
     "@rolldown/binding-android-arm-eabi": ["@rolldown/binding-android-arm-eabi@1.2.19", "", { "os": "android", "cpu": "arm" }, "sha512-e+Ebe0WT+9tbXmNKPIiC8YrWAHYwug3m6i4p3rZGGulfZri1jtI4HslT+OZnFf/OIHowWF71DTlHwXBP2SiA7A=="],
 

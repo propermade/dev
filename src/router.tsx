@@ -10,6 +10,7 @@ import {
 import { ModeToggle, ThemeShell } from "./components/ThemeShell";
 import { site } from "./content/site";
 import { Home } from "./routes";
+import { Demo } from "./routes/demo";
 import { Work } from "./routes/work";
 import { pages } from "./seo";
 
@@ -47,11 +48,12 @@ const route = <P extends string>(path: P, title: string, component: () => React.
     component,
   });
 
-export const routePaths = ["/", "/work"] as const;
+export const routePaths = ["/", "/work", "/demo"] as const;
 
 const routeTree = rootRoute.addChildren([
   route("/", pages[0]!.title, Home),
   route("/work", pages[1]!.title, Work),
+  route("/demo", pages[2]!.title, Demo),
 ]);
 
 export const createAppRouter = (history?: RouterHistory) =>

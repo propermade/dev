@@ -42,6 +42,11 @@ export function ThemeShell({ children }: { children: ReactNode }) {
   );
 }
 
+/** The site's color mode and its setter, for components that show their own mode switch. */
+export function useThemeMode() {
+  return useContext(Ctx);
+}
+
 export function ModeToggle() {
   const { mode, setMode } = useContext(Ctx);
   return <ThemeToggle themeMode={mode} isCollapsed={false} onChange={setMode} />;

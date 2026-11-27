@@ -543,54 +543,6 @@ video {
   }
 }
 
-/* ── /ui/ live demos ────────────────────────────────────────────────── */
-.demo {
-  display: grid;
-  gap: 1.25rem;
-  margin: 1.5rem 0;
-  padding: 1.5rem;
-  border: 1px solid color-mix(in oklab, var(--fg) 25%, transparent);
-  border-radius: 3px;
-  background: var(--raised);
-}
-.demo-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-}
-.demo-controls {
-  display: grid;
-  gap: 1rem;
-}
-.demo-controls label {
-  display: grid;
-  gap: 0.5rem;
-  font: 500 var(--step-label) / 1.2 var(--font-mono);
-}
-.demo .demo-note {
-  margin: 0;
-  font-size: 0.9375rem;
-  color: var(--muted);
-}
-.page section ul {
-  list-style: disc;
-  padding-left: 1.25rem;
-  max-width: 62ch;
-  font: 400 var(--step-0) / 1.6 var(--font-body);
-}
-.demo input:not([type="range"]) {
-  border: 1px solid color-mix(in oklab, var(--fg) 45%, transparent);
-}
-.demo-controls label {
-  display: block;
-}
-.demo-controls label input {
-  display: block;
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
 /* ── /work: project list, media tabs, code ──────────────────────────── */
 .page-head {
   background: var(--raised);
@@ -1029,4 +981,102 @@ video {
     color: CanvasText;
     font-style: normal;
   }
+}
+
+/* ── /demo ──────────────────────────────────────────────────────────── */
+.app-window {
+  border: 1px solid color-mix(in oklab, var(--fg) 25%, transparent);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--bg);
+}
+.app-page {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+}
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: 1rem;
+}
+.kpi {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.25rem;
+}
+.kpi-value {
+  font: 600 1.75rem / 1.1 var(--font-display, inherit);
+  letter-spacing: -0.02em;
+}
+.kpi-detail {
+  font-size: 0.875rem;
+}
+.kpi-spark {
+  inline-size: 100%;
+  block-size: 2rem;
+  margin-block-start: 0.5rem;
+}
+.kpi-track {
+  display: block;
+  block-size: 0.4rem;
+  margin-block-start: 0.85rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--fg) 12%, transparent);
+}
+.kpi-bar {
+  display: block;
+  block-size: 100%;
+  border-radius: inherit;
+  background: var(--signal);
+}
+.chart-card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.25rem;
+}
+.workspace-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.workspace-head > div > * {
+  display: block;
+}
+.workspace-head > div > * + * {
+  max-width: 62ch;
+  margin-block-start: 0.25rem;
+}
+.demo-fault {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+/* The canvas the panes live on: taller than the default panes, with a dotted grid, so it is
+   obvious they can be moved. */
+.workspace {
+  min-height: 36rem;
+  padding: 0.75rem;
+  border: 2px dashed color-mix(in oklab, var(--fg) 25%, transparent);
+  border-radius: 0.75rem;
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--fg) 18%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+}
+.demo-note {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
