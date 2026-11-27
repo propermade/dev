@@ -51,3 +51,15 @@
 
 - Changed (88): `.github/workflows/pages.yml`, `.npmrc`, `.vscode/settings.json`, `bun.lock`, `docs/.DS_Store`, `docs/aeo.md`, `docs/canopy/.DS_Store`, `docs/canopy/S01_overview_top.jpg`, `docs/canopy/S02_overview_latest_activity.jpg`, `docs/canopy/S04_transactions_top.jpg` (+78 more)
 - Commits: `3bf8559 docs: media cleanup`; `0f16414 feat: add work content`; `ced593a content: update contact email`; `f835386 fix(work): keep code bar on one row and raise primary button contrast`; `3f560a2 content(work): retitle work page headline`; `0dee0a2 content: rewrite hero and about copy for a staff-plus audience`; `7d2b2da feat(work): add project list with screenshot, recording and code tabs`; `88b7240 ci: remove GITHUB_ prefix from env secret`
+
+## 2026-11-27 — Demo: theme editor in side nav, full-window layout
+
+<!-- session-memory: session=e9c08064-24d2-4b61-b5e4-19b77c5b83fb kind=agent at=1795804989 -->
+
+- Branch `feat/demo-sidenav-theme`: demo layout, plus /work "View demo" link and GitHub links removed.
+- core's AppShell/SideNav only take nav items, so the demo composes Astryx's AppShell + SideNav.
+- Narrow (<64rem) uses its own AppGrid layoutId (`demo-workspace-narrow`), because a saved layout overrides paneColumns.
+- ThemeProvider adds a display:contents wrapper, so `#root > main` does not match.
+- Build, content check, 11 tests pass; mobile checked only in a 390px iframe.
+- AppShell height="fill" is 100dvh; it needs style height 100% under the site header. Side nav keeps its built-in collapse.
+- Open: lint fails at themeEngine.ts:86. Prerendered /work is an empty body on main too.
