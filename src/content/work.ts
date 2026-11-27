@@ -64,10 +64,7 @@ export const projects: Project[] = [
       ["Scope", "200+ themeable tokens with sensible defaults, five packages and a demo app"],
       ["Gate", "95% test coverage threshold on core, design and the application"],
     ],
-    links: [
-      { label: "Source on GitHub", href: "https://github.com/propermade/ui" },
-      requestAccess("propermade/ui"),
-    ],
+    links: [{ label: "View demo", href: "/demo/" }, requestAccess("propermade/ui")],
   },
   {
     id: "central",
@@ -90,7 +87,10 @@ export const projects: Project[] = [
     facts: [
       ["Role", "App architecture, design system, and build"],
       ["Focus", "High-volume streaming data, dense tables, a responsive UI"],
-      ["Customization", "Customizable themes with light and dark modes, and layouts configurable per browser"],
+      [
+        "Customization",
+        "Customizable themes with light and dark modes, and layouts configurable per browser",
+      ],
     ],
     links: [],
     shots: [
@@ -158,7 +158,8 @@ export const projects: Project[] = [
     categories: ["applications"],
     kindLabel: "Application",
     title: "A team workspace for nonprofit financial recordkeeping",
-    summary: "Canopy Ledger gives a nonprofit team one place for transactions, funds, budgets and reports.",
+    summary:
+      "Canopy Ledger gives a nonprofit team one place for transactions, funds, budgets and reports.",
     body: "A working product built on the design system end to end, across six pages: app shell, cards, ledger tables, progress bars, segmented controls and status chips. It puts the components to work in a real product shape instead of isolated docs examples.",
     tags: ["React", "TypeScript", "Design tokens", "Data tables", "Historical charts"],
     facts: [
@@ -266,9 +267,6 @@ export const projects: Project[] = [
       ["Approach", "Deterministic workflows, scripted gates, human approval at judgment points"],
       ["Gates", "Design, contracts and failing tests need a person"],
     ],
-    links: [
-      { label: "Source on GitHub", href: "https://github.com/propermade/ai" },
-      requestAccess("propermade/ai"),
-    ],
+    links: [requestAccess("propermade/ai")],
   },
 ];
