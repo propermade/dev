@@ -1,6 +1,15 @@
+// core's AppShell and SideNav only take nav items, so the shell is composed from Astryx's own.
+import { AppShell, SideNav } from "@astryxdesign/core";
 // No subpath entry for charts yet, so this comes from the root entry.
 import { TimeSeriesChart, type TimeSeries } from "@propermade/core";
-import { AppShell, Button, Card, SegmentedControl, Text } from "@propermade/core/components";
+import {
+  Button,
+  Card,
+  SegmentedControl,
+  Text,
+  ThemeToggle,
+  TopNav,
+} from "@propermade/core/components";
 import { AppGrid, DataSourcesProvider, type AppGridPane } from "@propermade/core/grid";
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 
@@ -112,7 +121,8 @@ const noop = () => {};
 
 /** Whether the viewport is wide enough for two panes side by side. */
 function useWide() {
-  const query = "(min-width: 48rem)";
+  // The side nav takes 20rem, so two panes need more than the usual tablet width.
+  const query = "(min-width: 64rem)";
   const [wide, setWide] = useState(() => matchMedia(query).matches);
   useEffect(() => {
     const media = matchMedia(query);
@@ -130,7 +140,7 @@ export default function DemoLive() {
   const { mode, setMode } = useThemeMode();
   const wide = useWide();
   const [settings, setSettings] = useThemeSettings();
-  const [themeOpen, setThemeOpen] = useState(() => matchMedia("(min-width: 80rem)").matches);
+  const [navCollapsed, setNavCollapsed] = useState(false);
   const vars = useMemo(() => themeVars(settings) as CSSProperties, [settings]);
   const n = Number(span);
   const series = useMemo<TimeSeries[]>(
@@ -142,125 +152,123 @@ export default function DemoLive() {
     [walks.index, walks.equities, walks.crypto, n],
   );
   return (
-    <section className="band" aria-labelledby="app-h">
+    <section className="app-themed" style={vars} aria-labelledby="app-h">
       <h2 id="app-h" className="visually-hidden">
         The demo app
       </h2>
-      <div className="app-window" data-theme-open={themeOpen || undefined}>
-        <div className="app-themed" style={vars}>
-          <AppShell
-            appName="Proper demo"
+      <AppShell
+        variant="section"
+        contentPadding={0}
+        height="fill"
+        // "fill" alone is a whole viewport tall, which runs under the site header.
+        style={{ height: "100%" }}
+        topNav={
+          <TopNav
+            heading="Propermade UI demo"
             logo={<DemoMark />}
-            sideNavItems={[]}
             topNavItems={[]}
             activeNavId=""
-            themeMode={mode}
-            handleThemeModeChange={setMode}
             handleClickNavigation={noop}
+          />
+        }
+        sideNav={
+          <SideNav
+            collapsible={{ isCollapsed: navCollapsed, onCollapsedChange: setNavCollapsed }}
+            // A fixed width would also hold the collapsed rail open.
+            style={navCollapsed ? undefined : { inlineSize: "20rem" }}
+            footer={<ThemeToggle themeMode={mode} isCollapsed={navCollapsed} onChange={setMode} />}
           >
-            <div className="app-page">
-              <div className="app-page-head">
-                <Text weight="semibold">Overview</Text>
-                <Button
-                  size="sm"
-                  variant={themeOpen ? "primary" : "secondary"}
-                  label="Theme"
-                  aria-pressed={themeOpen}
-                  onClick={() => setThemeOpen((open) => !open)}
-                />
-              </div>
-              <div className="kpis">
-                <Kpi
-                  label="Composite index"
-                  value={last(walks.index).toFixed(2)}
-                  delta={change(walks.index)}
-                  spark={values(walks.index)}
-                />
-                <Kpi
-                  label="Updates per second"
-                  value={Math.round(last(walks.throughput)).toLocaleString()}
-                  delta={change(walks.throughput)}
-                  spark={values(walks.throughput)}
-                  detail="vs a minute ago"
-                />
-                <Kpi
-                  label="Render latency, p99"
-                  value={`${last(walks.latency).toFixed(1)} ms`}
-                  delta={change(walks.latency)}
-                  upIs="bad"
-                  spark={values(walks.latency)}
-                  detail="vs a minute ago"
-                />
-                <Kpi
-                  label="Feeds live"
-                  value="2 of 2"
-                  progress={1}
-                  detail="Each in its own worker"
-                />
-              </div>
+            {navCollapsed ? null : <ThemePanel settings={settings} onChange={setSettings} />}
+          </SideNav>
+        }
+      >
+        <div className="app-page">
+          <div className="kpis">
+            <Kpi
+              label="Composite index"
+              value={last(walks.index).toFixed(2)}
+              delta={change(walks.index)}
+              spark={values(walks.index)}
+            />
+            <Kpi
+              label="Updates per second"
+              value={Math.round(last(walks.throughput)).toLocaleString()}
+              delta={change(walks.throughput)}
+              spark={values(walks.throughput)}
+              detail="vs a minute ago"
+            />
+            <Kpi
+              label="Render latency, p99"
+              value={`${last(walks.latency).toFixed(1)} ms`}
+              delta={change(walks.latency)}
+              upIs="bad"
+              spark={values(walks.latency)}
+              detail="vs a minute ago"
+            />
+            <Kpi label="Feeds live" value="2 of 2" progress={1} detail="Each in its own worker" />
+          </div>
 
-              <Card>
-                <div className="chart-card">
-                  <div className="chart-head">
-                    <Text weight="semibold">Index history</Text>
-                    <div className="chart-controls">
-                      <SegmentedControl.Root value={span} onChange={setSpan} label="Time span">
-                        <SegmentedControl.Item value="60" label="15s" />
-                        <SegmentedControl.Item value="120" label="30s" />
-                        <SegmentedControl.Item value="240" label="60s" />
-                      </SegmentedControl.Root>
-                      <Button
-                        size="sm"
-                        variant="secondary"
-                        label={paused ? "Resume" : "Pause"}
-                        onClick={() => setPaused((p) => !p)}
-                      />
-                    </div>
-                  </div>
-                  <TimeSeriesChart label="Composite index" series={series} height={240} live />
-                </div>
-              </Card>
-
-              <div className="workspace-head">
-                <div>
-                  <Text weight="semibold">Workspace</Text>
-                  <Text type="supporting">
-                    Drag a pane by its handle, resize it from its edges, add or remove panes, and
-                    pick each pane's data source from its settings. Layouts are saved in this
-                    browser.
-                  </Text>
-                </div>
-                <div className="workspace-actions">
+          <Card>
+            <div className="chart-card">
+              <div className="chart-head">
+                <Text weight="semibold">Index history</Text>
+                <div className="chart-controls">
+                  <SegmentedControl.Root value={span} onChange={setSpan} label="Time span">
+                    <SegmentedControl.Item value="60" label="15s" />
+                    <SegmentedControl.Item value="120" label="30s" />
+                    <SegmentedControl.Item value="240" label="60s" />
+                  </SegmentedControl.Root>
                   <Button
+                    size="sm"
                     variant="secondary"
-                    label="Take the crypto feed down for 5 seconds"
-                    onClick={() => outage("crypto")}
+                    label={paused ? "Resume" : "Pause"}
+                    onClick={() => setPaused((p) => !p)}
                   />
                 </div>
               </div>
-              <div className="workspace" role="region" aria-label="Workspace">
-                <DataSourcesProvider sources={demoSources}>
-                  <AppGrid
-                    layoutId="demo-workspace"
-                    panes={panes}
-                    maxPanes={6}
-                    paneColumns={wide ? 2 : 1}
-                    paneHeight={3}
-                    paneTitleActive
-                    paneActionsActive
-                  />
-                </DataSourcesProvider>
-              </div>
-              <p className="demo-note">
-                A crashed worker only takes down its own pane. That pane says it is reconnecting and
-                retries automatically with backoff; if the feed stays down it offers a Retry, and
-                every other pane keeps streaming. The data on this page is generated for the demo.
-              </p>
+              <TimeSeriesChart label="Composite index" series={series} height={240} live />
             </div>
-          </AppShell>
+          </Card>
+
+          <div className="workspace-head">
+            <div>
+              <Text weight="semibold">Workspace</Text>
+              <Text type="supporting">
+                Drag a pane by its handle, resize it from its edges, add or remove panes, and pick
+                each pane's data source from its settings. Layouts are saved in this browser.
+              </Text>
+            </div>
+            <div className="workspace-actions">
+              <Button
+                style={{ height: 38 }}
+                variant="secondary"
+                label="Take the crypto feed down for 5 seconds"
+                onClick={() => outage("crypto")}
+              />
+            </div>
+          </div>
+          <div className="workspace" role="region" aria-label="Workspace">
+            <DataSourcesProvider sources={demoSources}>
+              <AppGrid
+                // A saved layout wins over paneColumns, so each width keeps its own.
+                key={wide ? "wide" : "narrow"}
+                layoutId={wide ? "demo-workspace" : "demo-workspace-narrow"}
+                panes={panes}
+                maxPanes={6}
+                paneColumns={wide ? 2 : 1}
+                paneHeight={3}
+                paneTitleActive
+                paneActionsActive
+              />
+            </DataSourcesProvider>
+          </div>
+          <p className="demo-note">
+            A crashed worker only takes down its own pane. That pane says it is reconnecting and
+            retries automatically with backoff; if the feed stays down it offers a Retry, and every
+            other pane keeps streaming. The data on this page is generated for the demo.
+          </p>
         </div>
-        {themeOpen ? <ThemePanel settings={settings} onChange={setSettings} /> : null}
-      </div>
+      </AppShell>
     </section>
   );
 }

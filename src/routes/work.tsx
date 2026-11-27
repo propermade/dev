@@ -10,6 +10,9 @@ type Filter = "all" | Category;
 
 const filters: { id: Filter; label: string }[] = [{ id: "all", label: "All" }, ...categories];
 
+/** Links to another site open in a new tab; email and in-site links don't. */
+const isExternal = (href: string) => href.startsWith("https://");
+
 function Placeholder({
   title,
   meta,
@@ -225,17 +228,17 @@ function ProjectSection({ p, n }: { p: Project; n: number }) {
                 key={l.label}
                 className={i === 0 ? "btn primary" : "btn"}
                 href={l.href}
-                {...(l.href.startsWith("mailto:") ? {} : { target: "_blank", rel: "noopener" })}
+                {...(isExternal(l.href) ? { target: "_blank", rel: "noopener" } : {})}
               >
                 {l.label}
-                {l.href.startsWith("mailto:") ? null : (
+                {isExternal(l.href) ? (
                   <>
                     {" "}
                     <span className="arrow" aria-hidden="true">
                       ↗
                     </span>
                   </>
-                )}
+                ) : null}
               </a>
             ))}
           </div>
