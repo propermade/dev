@@ -1,17 +1,14 @@
 import { Dialog, Layout, Text } from "@propermade/core/components";
 import { useId, useState, type KeyboardEvent } from "react";
 
-import { projects, workIntro, type Project } from "../content/work";
+import { categories, projects, workIntro, type Category, type Project } from "../content/work";
 import { Highlighted } from "../highlight";
 
-type Kind = "all" | Project["kind"];
 type Tab = "shots" | "rec" | "code";
 
-const filters: { id: Kind; label: string }[] = [
-  { id: "all", label: "All" },
-  { id: "ui", label: "Design systems & applications" },
-  { id: "ai", label: "Agent harness" },
-];
+type Filter = "all" | Category;
+
+const filters: { id: Filter; label: string }[] = [{ id: "all", label: "All" }, ...categories];
 
 function Placeholder({
   title,
@@ -278,8 +275,8 @@ function ProjectSection({ p, n }: { p: Project; n: number }) {
 }
 
 export const Work = () => {
-  const [filter, setFilter] = useState<Kind>("all");
-  const shown = projects.filter((p) => filter === "all" || p.kind === filter);
+  const [filter, setFilter] = useState<Filter>("all");
+  const shown = projects.filter((p) => filter === "all" || p.categories.includes(filter));
   return (
     <>
       <div className="page-head">
