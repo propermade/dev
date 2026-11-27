@@ -80,7 +80,7 @@ export const projects: Project[] = [
     facts: [
       ["Role", "App architecture, design system, and build"],
       ["Focus", "High-volume streaming data, dense tables, a responsive UI"],
-      ["Customization", "Customizable themes with light and dark modes, and layouts configurable per user"],
+      ["Customization", "Customizable themes with light and dark modes, and layouts configurable per browser"],
     ],
     links: [],
     shots: [
