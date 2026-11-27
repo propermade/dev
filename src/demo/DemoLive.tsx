@@ -107,9 +107,23 @@ function outage(feed: Feed, ms = 5000) {
 
 const noop = () => {};
 
+/** Whether the viewport is wide enough for two panes side by side. */
+function useWide() {
+  const query = "(min-width: 48rem)";
+  const [wide, setWide] = useState(() => matchMedia(query).matches);
+  useEffect(() => {
+    const media = matchMedia(query);
+    const update = () => setWide(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  return wide;
+}
+
 export default function DemoLive() {
   const walks = useLiveWalks();
   const { mode, setMode } = useThemeMode();
+  const wide = useWide();
   const series = useMemo<TimeSeries[]>(
     () => [
       { id: "index", label: "Composite index", points: walks.index, emphasis: true },
@@ -187,6 +201,8 @@ export default function DemoLive() {
                   layoutId="demo-workspace"
                   panes={panes}
                   maxPanes={6}
+                  paneColumns={wide ? 2 : 1}
+                  paneHeight={3}
                   paneTitleActive
                   paneActionsActive
                 />
