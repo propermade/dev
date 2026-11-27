@@ -9,6 +9,7 @@ const { render, routePaths } = await import(join(process.cwd(), "dist/server/ent
 
 for (const url of routePaths as string[]) {
   const { html } = await render(url);
+  if (!html.includes("<main")) throw new Error(`${url} prerendered an empty page`);
   const page = template.replace("<!--app-->", html).replace("<!--head-->", headFor(url));
   const dir = url === "/" ? dist : join(dist, url);
   await mkdir(dir, { recursive: true });
