@@ -14,6 +14,12 @@ export const pages: PageMeta[] = [
     description: site.summary,
   },
   { path: "/work", title: `Work · ${site.name}`, description: "Selected Work" },
+  {
+    path: "/demo",
+    title: `Demo · ${site.name}`,
+    description:
+      "A live demo of the design system: re-themable components and a streaming workspace.",
+  },
 ];
 
 const url = (path: string) => `${siteUrl}${path}`;

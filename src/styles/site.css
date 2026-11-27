@@ -1030,3 +1030,44 @@ video {
     font-style: normal;
   }
 }
+
+/* ── /demo ──────────────────────────────────────────────────────────── */
+.demo {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  border: 1px solid color-mix(in oklab, var(--fg) 25%, transparent);
+  border-radius: 0.75rem;
+  background: var(--raised);
+}
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.demo-controls {
+  display: grid;
+  gap: 1rem;
+}
+.demo-controls label {
+  display: block;
+  font: 500 var(--step-label) / 1.2 var(--font-mono);
+}
+.demo-controls label input {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.demo .demo-note {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+.demo input:not([type="range"]) {
+  border: 1px solid color-mix(in oklab, var(--fg) 45%, transparent);
+}
+.demo-grid {
+  margin: 1.5rem 0;
+}

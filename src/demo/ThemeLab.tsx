@@ -14,7 +14,7 @@ const accents = [
   { value: "#b3261e", label: "Red" },
 ];
 
-/** Real @propermade/core components. The data on this page is mock data, stated plainly. */
+/** Real @propermade/core components. */
 export function LiveComponents() {
   const [view, setView] = useState("grid");
   const [name, setName] = useState("");
