@@ -618,7 +618,7 @@ video {
 }
 .page-head p:not(.label) {
   margin: 0;
-  max-width: 44ch;
+  max-width: 55ch;
   font: 400 var(--step-0) / 1.4 var(--font-body);
 }
 .filters {

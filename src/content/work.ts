@@ -36,7 +36,7 @@ const requestAccess = (repo: string) => ({
 export const workIntro = {
   title: "Platform standards that scale",
   summary:
-    "Four example projects, built around one problem I've worked on since creating a design system for a Fortune 20 at Razorfish: making an organization's standards the default path, so quality doesn't depend on who reviewed the change. A design system that enforces its own rules, two applications that test it against dense and live data, and an agent workflow where verification, not the agent, decides what's done.",
+    "Four example projects, built around one problem I've worked on since creating a design system for a Fortune 20 at Razorfish: making an organization's standards the default path, so quality doesn't depend on who reviewed the change. A design system that enforces its own rules, two applications that test it against dense and live data, and an agent harness where verification, not the agent, decides what's done.",
 };
 
 export const projects: Project[] = [
@@ -246,7 +246,7 @@ export const projects: Project[] = [
   {
     id: "ai",
     kind: "ai",
-    kindLabel: "Agent workflow",
+    kindLabel: "Agent harness",
     title: "Agent workflows with verification built in",
     summary: "A harness where scripts and people, not the agent, decide what's done.",
     body: "Agents are fast and unreliable judges of their own work, so the harness separates doing from verifying. Each workflow is a directed acyclic graph. Mechanical steps are scripts that must pass, judgment steps pause for an agent or a person, and loops are bounded. Design, contracts and failing tests need human approval and are fingerprinted, so an agent can't quietly rewrite a test to get green. The result is delegation with evidence: each pull request carries the commands that were run and their output.",
