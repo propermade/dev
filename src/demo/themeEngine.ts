@@ -5,6 +5,8 @@
 export type FontChoice = "geist" | "space-grotesk" | "system" | "serif";
 export type Density = "compact" | "comfortable" | "spacious";
 
+const grow = (spacing: string) => `calc(1lh + var(${spacing}))`;
+
 export interface ThemeSettings {
   /** A color for primary actions, selection and links; null keeps the site theme's. */
   accent: string | null;
@@ -29,11 +31,15 @@ export const FONTS: Record<FontChoice, { label: string; stack: string }> = {
   serif: { label: "Serif", stack: 'Georgia, "Times New Roman", serif' },
 };
 
-/** Control heights in px: small, medium, large. */
-export const DENSITIES: Record<Density, [number, number, number]> = {
-  compact: [24, 28, 32],
-  comfortable: [28, 32, 36],
-  spacious: [32, 36, 40],
+/**
+ * Control heights: small, medium, large, each the label's line height plus a spacing token, so a
+ * control always fits its label and stays centered at any text size. Comfortable is the site
+ * theme's own (src/theme/theme.ts).
+ */
+export const DENSITIES: Record<Density, [string, string, string]> = {
+  compact: ["--spacing-4", "--spacing-4", "--spacing-5"].map(grow) as [string, string, string],
+  comfortable: ["--spacing-4", "--spacing-5", "--spacing-6"].map(grow) as [string, string, string],
+  spacious: ["--spacing-5", "--spacing-6", "--spacing-7"].map(grow) as [string, string, string],
 };
 
 export const RADIUS_RANGE = { min: 0, max: 24 } as const;
@@ -209,9 +215,9 @@ export function themeVars(s: ThemeSettings): Record<string, string> {
   }
   if (s.density !== DEFAULTS.density) {
     const [sm, md, lg] = DENSITIES[s.density];
-    vars["--size-element-sm"] = `${sm}px`;
-    vars["--size-element-md"] = `${md}px`;
-    vars["--size-element-lg"] = `${lg}px`;
+    vars["--size-element-sm"] = sm;
+    vars["--size-element-md"] = md;
+    vars["--size-element-lg"] = lg;
   }
   return vars;
 }
