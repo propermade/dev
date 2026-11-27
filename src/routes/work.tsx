@@ -1,7 +1,8 @@
-import { useId, useState, type KeyboardEvent } from "react";
 import { Dialog, Layout, Text } from "@propermade/core/components";
-import { Highlighted } from "../highlight";
+import { useId, useState, type KeyboardEvent } from "react";
+
 import { projects, workIntro, type Project } from "../content/work";
+import { Highlighted } from "../highlight";
 
 type Kind = "all" | Project["kind"];
 type Tab = "shots" | "rec" | "code";

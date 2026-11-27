@@ -1,9 +1,10 @@
+import { InboxIcon } from "@heroicons/react/16/solid";
 import { Link } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
-import { palette, ratio, type Token } from "../theme/theme";
+
 import { home } from "../content/home";
 import { site } from "../content/site";
-import { InboxIcon } from "@heroicons/react/16/solid";
+import { palette, ratio, type Token } from "../theme/theme";
 
 const swatches = [
   { name: "Ink", token: "bg" as Token, mode: 1 as const, ratio: ratio("fg", "bg", 1) },

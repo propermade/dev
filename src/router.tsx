@@ -6,11 +6,13 @@ import {
   Outlet,
   type RouterHistory,
 } from "@tanstack/react-router";
+
+import { ModeToggle, ThemeShell } from "./components/ThemeShell";
 import { site } from "./content/site";
-import { pages } from "./seo";
 import { Home } from "./routes";
 import { Work } from "./routes/work";
-import { ModeToggle, ThemeShell } from "./components/ThemeShell";
+import { pages } from "./seo";
+
 import "@propermade/core/index.css";
 import "@fontsource/geist-sans/400.css";
 import "@fontsource/geist-sans/600.css";
