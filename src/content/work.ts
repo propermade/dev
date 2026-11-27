@@ -1,6 +1,16 @@
 import { site } from "./site";
 
 // Content for /work. Media is placeholder until real screenshots, recordings and code arrive.
+export type Category = "design-systems" | "applications" | "realtime" | "agents";
+
+/** The /work filters, in order. A project can belong to several. */
+export const categories: { id: Category; label: string }[] = [
+  { id: "design-systems", label: "Design systems" },
+  { id: "applications", label: "Applications" },
+  { id: "realtime", label: "Real-time data" },
+  { id: "agents", label: "Agent harness" },
+];
+
 export type Shot = { title: string; caption: string; src?: string; alt?: string };
 export type Snippet = { file: string; lang: string; note: string; code: string };
 export type Recording = {
@@ -13,7 +23,7 @@ export type Recording = {
 };
 export type Project = {
   id: string;
-  kind: "ui" | "ai";
+  categories: Category[];
   kindLabel: string;
   title: string;
   summary: string;
@@ -42,7 +52,7 @@ export const workIntro = {
 export const projects: Project[] = [
   {
     id: "ui",
-    kind: "ui",
+    categories: ["design-systems"],
     kindLabel: "Design system",
     title: "A design system that enforces its own rules",
     summary: "Tokens, components and checks built so the standard holds without review.",
@@ -61,7 +71,7 @@ export const projects: Project[] = [
   },
   {
     id: "central",
-    kind: "ui",
+    categories: ["applications", "realtime"],
     kindLabel: "Application",
     title: "User interfaces for business-critical, high-volume streaming data",
     summary:
@@ -145,7 +155,7 @@ export const projects: Project[] = [
   },
   {
     id: "canopy",
-    kind: "ui",
+    categories: ["applications"],
     kindLabel: "Application",
     title: "A team workspace for nonprofit financial recordkeeping",
     summary: "Canopy Ledger gives a nonprofit team one place for transactions, funds, budgets and reports.",
@@ -245,7 +255,7 @@ export const projects: Project[] = [
   },
   {
     id: "ai",
-    kind: "ai",
+    categories: ["agents"],
     kindLabel: "Agent harness",
     title: "Agent workflows with verification built in",
     summary: "A harness where scripts and people, not the agent, decide what's done.",
