@@ -984,28 +984,23 @@ video {
 }
 
 /* ── /demo ──────────────────────────────────────────────────────────── */
-.app-window {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  border: 1px solid color-mix(in oklab, var(--fg) 25%, transparent);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  background: var(--bg);
+/* The demo takes whatever the site header leaves of the window. */
+#root:has(.demo-full) {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
 }
-@media (min-width: 80rem) {
-  .app-window[data-theme-open] {
-    grid-template-columns: minmax(0, 1fr) 20rem;
-  }
-  /* Break out of the text column so the app keeps its room beside the editor. */
-  .app-window {
-    inline-size: min(calc(100vw - 3rem), 90rem);
-    margin-inline: calc((100% - min(calc(100vw - 3rem), 90rem)) / 2);
-  }
+#root:has(.demo-full) #main {
+  flex: 1;
+  min-height: 0;
 }
+.demo-full,
 .app-themed {
-  min-width: 0;
+  height: 100%;
 }
-.app-page-head,
+.demo-full {
+  border-block-start: 1px solid color-mix(in oklab, var(--fg) 25%, transparent);
+}
 .chart-head {
   display: flex;
   align-items: center;
@@ -1020,17 +1015,10 @@ video {
 }
 .theme-panel {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-content: start;
   gap: 1.25rem;
-  padding: 1.25rem;
-  border-block-start: 1px solid color-mix(in oklab, var(--fg) 20%, transparent);
-  background: var(--raised);
-}
-@media (min-width: 80rem) {
-  .theme-panel {
-    border-block-start: 0;
-    border-inline-start: 1px solid color-mix(in oklab, var(--fg) 20%, transparent);
-  }
+  padding: 0.5rem;
 }
 .theme-head {
   display: grid;
@@ -1128,6 +1116,8 @@ video {
 }
 .app-page {
   display: grid;
+  /* Lets the chart shrink again when the side nav opens. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.25rem;
   padding: 1.25rem;
 }
@@ -1171,6 +1161,8 @@ video {
 }
 .chart-card {
   display: grid;
+  /* Lets the chart shrink again when the side nav opens. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.5rem;
   padding: 0.25rem;
 }

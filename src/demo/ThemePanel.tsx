@@ -74,11 +74,11 @@ export function ThemePanel({
   };
 
   return (
-    <aside className="theme-panel" aria-label="Theme editor">
+    <div className="theme-panel" role="group" aria-label="Theme editor">
       <div className="theme-head">
         <Text weight="semibold">Theme</Text>
         <Text type="supporting">
-          Change the design tokens and the app on the left updates as you go. Saved in this browser.
+          Change the design tokens and the app updates as you go. Saved in this browser.
         </Text>
       </div>
 
@@ -195,6 +195,6 @@ export function ThemePanel({
       </section>
 
       <Button variant="ghost" label="Reset to the site theme" onClick={() => onChange(DEFAULTS)} />
-    </aside>
+    </div>
   );
 }
