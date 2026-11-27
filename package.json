@@ -9,6 +9,7 @@
     "dev": "bun run theme && vite",
     "lint": "bun fmt && bun lint --type-aware",
     "preview": "vite preview --outDir dist/client",
+    "test": "bun test src",
     "theme": "bun scripts/build-theme.ts",
     "typecheck": "tsrs --noEmit --fast",
     "prepare": "husky"
