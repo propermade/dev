@@ -13,8 +13,8 @@ export const Demo = () => {
         <p className="label">Live demo</p>
         <h1>The design system, running</h1>
         <p>
-          Real components, live theming, and a streaming workspace with isolated panes, all built
-          from the same packages as the projects on the work page.
+          Real components and a streaming workspace with isolated panes, built from the same
+          packages as the projects on the work page.
         </p>
       </div>
       {mounted ? (

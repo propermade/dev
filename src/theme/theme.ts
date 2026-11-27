@@ -51,6 +51,22 @@ const siteTokens = Object.fromEntries(
   ]),
 ) as Record<string, string>;
 
+/**
+ * Astryx derives its surface colors from the accent, which tints every card, panel, popover and
+ * grid a pale cyan. Pin them to the site's own paper tones instead.
+ */
+const surfaceTokens = Object.fromEntries(
+  [
+    ["--color-background-surface", "raised"],
+    ["--color-background-card", "raised"],
+    ["--color-background-popover", "raised"],
+    ["--color-background-body", "bg"],
+  ].map(([name, token]) => [
+    name!,
+    `light-dark(${palette[token as Token][0]}, ${palette[token as Token][1]})`,
+  ]),
+) as Record<string, string>;
+
 export const theme = defineTheme({
   name: "site",
   color: {
@@ -64,6 +80,6 @@ export const theme = defineTheme({
     body: { family: "Geist Sans", fallbacks: "system-ui, sans-serif" },
     heading: { weight: "semibold", weights: { 1: "semibold", 2: "semibold" } },
   },
-  tokens: siteTokens,
+  tokens: { ...siteTokens, ...surfaceTokens },
   radius: { base: 4, multiplier: 1.5 },
 });
