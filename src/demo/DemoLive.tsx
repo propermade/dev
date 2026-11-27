@@ -240,9 +240,9 @@ export default function DemoLive() {
             </div>
             <div className="workspace-actions">
               <Button
-                style={{ height: 38 }}
                 variant="secondary"
-                label="Take the crypto feed down for 5 seconds"
+                label="Simulate a feed outage"
+                tooltip="Takes the crypto feed's worker down for 5 seconds"
                 onClick={() => outage("crypto")}
               />
             </div>

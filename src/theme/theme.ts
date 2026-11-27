@@ -67,6 +67,18 @@ const surfaceTokens = Object.fromEntries(
   ]),
 ) as Record<string, string>;
 
+/**
+ * Control heights that fit the label. Astryx buttons have 8px of vertical padding around a label
+ * line, and this theme's 16px base size makes that line 24px, so the 28px and 32px defaults are
+ * too short: the label overflows its box and sits low, and more so with larger system text.
+ * Heights built from the line height (`1lh`) plus the padding stay centered at any text size.
+ */
+const sizeTokens = {
+  "--size-element-sm": "calc(1lh + var(--spacing-4))",
+  "--size-element-md": "calc(1lh + var(--spacing-5))",
+  "--size-element-lg": "calc(1lh + var(--spacing-6))",
+} as Record<string, string>;
+
 export const theme = defineTheme({
   name: "site",
   color: {
@@ -80,6 +92,6 @@ export const theme = defineTheme({
     body: { family: "Geist Sans", fallbacks: "system-ui, sans-serif" },
     heading: { weight: "semibold", weights: { 1: "semibold", 2: "semibold" } },
   },
-  tokens: { ...siteTokens, ...surfaceTokens },
+  tokens: { ...siteTokens, ...surfaceTokens, ...sizeTokens },
   radius: { base: 4, multiplier: 1.5 },
 });

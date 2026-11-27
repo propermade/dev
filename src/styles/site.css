@@ -1173,6 +1173,9 @@ video {
   justify-content: space-between;
   gap: 1rem;
 }
+.workspace-actions {
+  display: flex;
+}
 .workspace-head > div > * {
   display: block;
 }

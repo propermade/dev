@@ -65,7 +65,9 @@ describe("themeVars", () => {
 
   it("sets a font and a density only when they differ", () => {
     expect(themeVars({ ...DEFAULTS, font: "serif" })["--font-family-body"]).toContain("Georgia");
-    expect(themeVars({ ...DEFAULTS, density: "compact" })["--size-element-md"]).toBe("28px");
+    expect(themeVars({ ...DEFAULTS, density: "compact" })["--size-element-md"]).toBe(
+      "calc(1lh + var(--spacing-4))",
+    );
     expect(themeVars({ ...DEFAULTS, font: "geist" })["--font-family-body"]).toBeUndefined();
   });
 
