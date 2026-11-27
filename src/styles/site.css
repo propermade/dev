@@ -688,11 +688,22 @@ video {
     gap: 0 3rem;
     align-items: start;
   }
-  .cols.solo .info > .sum { grid-area: sum; }
-  .cols.solo .info > p:not(.sum) { grid-area: body; }
-  .cols.solo .info > .tags { grid-area: tags; }
-  .cols.solo .info > .rows { grid-area: rows; margin: 0; }
-  .cols.solo .info > .links { grid-area: links; }
+  .cols.solo .info > .sum {
+    grid-area: sum;
+  }
+  .cols.solo .info > p:not(.sum) {
+    grid-area: body;
+  }
+  .cols.solo .info > .tags {
+    grid-area: tags;
+  }
+  .cols.solo .info > .rows {
+    grid-area: rows;
+    margin: 0;
+  }
+  .cols.solo .info > .links {
+    grid-area: links;
+  }
 }
 .info > p {
   margin: 0 0 1.25rem;

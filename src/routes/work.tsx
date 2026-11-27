@@ -1,5 +1,5 @@
 import { useId, useState, type KeyboardEvent } from "react";
-import { Dialog, Layout } from "@propermade/core/components";
+import { Dialog, Layout, Text } from "@propermade/core/components";
 import { Highlighted } from "../highlight";
 import { projects, workIntro, type Project } from "../content/work";
 
@@ -72,6 +72,11 @@ function Shots({ p }: { p: Project }) {
               }
             />
           </Dialog.Root>
+          {p.disclaimer && (
+            <Text size="xsm">
+              <em>{p.disclaimer}</em>
+            </Text>
+          )}
         </figure>
       ) : (
         <Placeholder
@@ -183,8 +188,8 @@ function ProjectSection({ p, n }: { p: Project; n: number }) {
   const hasMedia = Boolean(p.shots?.length || p.recordings?.length || p.code?.length);
   const tabs: { id: Tab; label: string; count: number }[] = [
     { id: "shots", label: "Screenshots", count: p.shots?.length ?? 0 },
-    { id: "rec", label: "Recording", count: p.recordings?.length ?? 0 },
-    { id: "code", label: "Code", count: p.code?.length ?? 0 },
+    // { id: "rec", label: "Recording", count: p.recordings?.length ?? 0 },
+    // { id: "code", label: "Code", count: p.code?.length ?? 0 },
   ];
   const onKey = (e: KeyboardEvent) => {
     const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
@@ -238,17 +243,33 @@ function ProjectSection({ p, n }: { p: Project; n: number }) {
           </div>
         </div>
         {hasMedia ? (
-        <div className="media">
-          <div id={`${uid}-panel`} role="tabpanel" aria-labelledby={`${uid}-${tab}`}>
-            {tab === "shots" ? (
-              <Shots p={p} />
-            ) : tab === "rec" ? (
-              <Recording p={p} />
-            ) : (
-              <Code p={p} />
-            )}
+          <div className="media">
+            <div role="tablist" aria-label={`${p.title} media`} onKeyDown={onKey}>
+              {tabs.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  role="tab"
+                  id={`${uid}-${t.id}`}
+                  aria-selected={tab === t.id}
+                  aria-controls={`${uid}-panel`}
+                  tabIndex={tab === t.id ? 0 : -1}
+                  onClick={() => setTab(t.id)}
+                >
+                  {t.label} ({t.count})
+                </button>
+              ))}
+            </div>
+            <div id={`${uid}-panel`} role="tabpanel" aria-labelledby={`${uid}-${tab}`}>
+              {tab === "shots" ? (
+                <Shots p={p} />
+              ) : tab === "rec" ? (
+                <Recording p={p} />
+              ) : (
+                <Code p={p} />
+              )}
+            </div>
           </div>
-        </div>
         ) : null}
       </div>
     </section>

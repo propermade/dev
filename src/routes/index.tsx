@@ -72,7 +72,7 @@ export function Home() {
                 design systems
               </span>{" "}
               strategy: the architecture, standards and teams that enable organizations to ship
-              accessible interfaces consistently at scale. I came to engineering through art and
+              accessible products consistently at scale. I came to engineering through art and
               design, with fine arts degrees from Pratt Institute and Tulane University.
             </p>
             <div className="cta rise" style={{ "--i": 4 } as CSSProperties}>
