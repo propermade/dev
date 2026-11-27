@@ -1060,7 +1060,10 @@ video {
   padding: 0.75rem;
   border: 2px dashed color-mix(in oklab, var(--fg) 25%, transparent);
   border-radius: 0.75rem;
-  background-image: radial-gradient(color-mix(in oklab, var(--fg) 18%, transparent) 1px, transparent 1px);
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--fg) 18%, transparent) 1px,
+    transparent 1px
+  );
   background-size: 16px 16px;
 }
 .demo-note {
