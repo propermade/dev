@@ -66,7 +66,7 @@ export const projects: Project[] = [
     title: "User interfaces for business-critical, high-volume streaming data",
     summary:
       "A dashboard built to stay fast and legible as data streams in at high volume and low latency.",
-    body: "This console handles extremely high-volume, low-latency streaming data, and it puts the system's data grids, charts, forms and theming to work at full density while updates arrive continuously. Each service's API requests and responses run in their own dedicated web worker, which keeps network work off the main thread so the interface stays responsive. A few quiet affordances keep it seamless when a source drops out: stale rows are dimmed, the history leaves a gap instead of a flat line, requests retry without the user managing them, and a control says whether a change was sent or applied.",
+    body: "This console handles extremely high-volume, low-latency streaming data, and it puts the system's data grids, charts, forms and theming to work at full density while updates arrive continuously. Each service's API requests and responses run in their own dedicated web worker, which keeps network work off the main thread so the interface stays responsive. Errors and crashed workers are isolated within their layout panes, so the rest of the app keeps running, and an automatic retry system recovers them. A few quiet affordances keep it seamless when a source drops out: stale rows are dimmed, the history leaves a gap instead of a flat line, and a control says whether a change was sent or applied.",
     tags: [
       "React",
       "Typescript",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     facts: [
       ["Role", "App architecture, design system, and build"],
       ["Focus", "High-volume streaming data, dense tables, a responsive UI"],
-      ["Themes", "Customizable themes with light and dark modes"],
+      ["Customization", "Customizable themes with light and dark modes, and layouts configurable per browser"],
     ],
     links: [],
     shots: [
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     kind: "ui",
     kindLabel: "Application",
     title: "A team workspace for nonprofit financial recordkeeping",
-    summary: "Canopy Ledger: a team workspace for nonprofit financial recordkeeping.",
+    summary: "Canopy Ledger gives a nonprofit team one place for transactions, funds, budgets and reports.",
     body: "A working product built on the design system end to end, across six pages: app shell, cards, ledger tables, progress bars, segmented controls and status chips. It puts the components to work in a real product shape instead of isolated docs examples.",
     tags: ["React", "TypeScript", "Design tokens", "Data tables", "Historical charts"],
     facts: [
