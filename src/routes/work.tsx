@@ -9,8 +9,8 @@ type Tab = "shots" | "rec" | "code";
 
 const filters: { id: Kind; label: string }[] = [
   { id: "all", label: "All" },
-  { id: "ui", label: "Design systems" },
-  { id: "ai", label: "Agent workflows" },
+  { id: "ui", label: "Design systems & applications" },
+  { id: "ai", label: "Agent harness" },
 ];
 
 function Placeholder({
