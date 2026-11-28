@@ -92,16 +92,17 @@ const change = (points: Point[], n = 60) => {
 };
 const last = (points: Point[]) => points[points.length - 1]!.value;
 
-/** The mark in the app shell: the site's favicon, a letter on a green tile. */
+/** The mark in the app shell: the site's favicon, a monoline P on a signal-green tile. */
 function DemoMark() {
   return (
     <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
-      <circle cx="32" cy="32" r="32" fill="var(--signal-fill, #3a7a4f)" />
+      <rect width="64" height="64" rx="15" fill="#468e5c" />
       <path
-        fill="#fff"
-        fillRule="evenodd"
-        transform="translate(-1.5 0)"
-        d="M21 16h15a10 10 0 0 1 0 20H29v12h-8zM29 23v6h7a3 3 0 0 0 0-6z"
+        fill="none"
+        stroke="#fbfaf7"
+        strokeWidth="9"
+        strokeLinejoin="round"
+        d="M23 50V15h12a11 11 0 0 1 0 22H23"
       />
     </svg>
   );
@@ -164,7 +165,7 @@ export default function DemoLive() {
         style={{ height: "100%" }}
         topNav={
           <TopNav
-            heading="Propermade UI demo"
+            heading="propermade ui demo"
             logo={<DemoMark />}
             topNavItems={[]}
             activeNavId=""
